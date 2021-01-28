@@ -1,0 +1,48 @@
+{% extends 'master.html' %} 
+{% load static %} 
+{% block content %}
+
+<style>
+  .profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+</style>
+
+<main class="page_main_wrapper">
+<div class="container">
+  {% if request.user.id == profile.user.id and user.is_authenticated%}
+  <div class="col-md-12">
+    <h3>Edit the profile</h3>
+    <div class="card card-body">
+      
+        <form method="POST" action="" enctype="multipart/form-data">
+          
+         
+          {% csrf_token %} 
+          {{form.as_table}}
+       
+        <input
+        class="btn btn-primary"
+        type="submit"
+        style="margin-top: 5px;"
+        name="Update Information"
+      />
+        </form>
+       
+        <script>
+          var name="{{ user.id }}";
+          document.getElementById('username').value=name;
+        </script>
+         {% else %}
+          <h4>Not aloud an dyou know it</h4> 
+        {% endif %}
+    </div>
+  
+  </div>
+ 
+</div>
+</main>
+{% endblock %}

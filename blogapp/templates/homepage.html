@@ -1,0 +1,1101 @@
+{% extends 'master.html' %}
+{% block title %}
+{{"Home"}}
+{% endblock title %}
+{% block content %}
+{% load static %}
+<!-- *** START PAGE MAIN CONTENT *** -->
+<main class="page_main_wrapper">
+    <!-- START NEWSTRICKER -->
+    <div class="container">
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" >
+        {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+        <div class="newstricker_inner">
+            <div class="trending"><strong>Trending</strong> Now</div>
+            <div class="news-ticker owl-carousel owl-theme">
+            {% for post in posts|slice:":5" %}
+               <div class="item">
+                    <a href="{% url 'post' post.id %}">{{ post.title }}..</a>
+            </div>
+           {% endfor %}
+
+        </div>
+    </div>
+    </div>
+    <!--  END OF /. NEWSTRICKER -->
+    <!-- START POST BLOCK SECTION -->
+    <section class="slider-inner">
+        <div class="container">
+            <div class="row thm-margin">
+                <div class="col-xs-12 col-sm-6 col-md-6 thm-padding">
+                    <div class="slider-wrapper">
+                        <div id="owl-slider" class="owl-carousel owl-theme">
+                            <!-- Slider item one -->
+                            {% for post in posts|slice:":4" %}
+                            <div class="item">
+                                <div class="slider-post post-height-1">
+                                    <a href="{% url 'post' post.id %}" class="news-image">
+                                        <img  style="height:275px" src="{{ post.image.url }}" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="post-text">
+                                        <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                        <h2><a href="{% url 'post' post.id %}">{{ post.title }}..</a></h2>
+                                        <ul class="authar-info">
+                                            <li class="like"><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- /.Slider item one -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 thm-padding">
+                    <div class="row slider-right-post thm-margin">
+                         {% for post in most_liked|slice:"1:2" %}
+                        <div class="col-xs-6 col-sm-12 col-md-12 thm-padding hidden-xs">
+                            <div class="slider-post post-height-2">
+                                <a href="{% url 'post' post.id %}" class="news-image"><img
+                                        src="{{ post.image.url }}" alt="" class="img-responsive"></a>
+                                <div class="post-text">
+                                    <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                    <h4><a href="{% url 'post' post.id %}">{{ post.title|slice:":20" }}..</a></h4>
+                                     <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                       {% endfor %}
+                         {% for post in most_liked|slice:"2:3" %}
+                          <div class="col-xs-6 col-sm-6 col-md-6 thm-padding">
+                            <div class="slider-post post-height-2">
+                                <a href="{% url 'post' post.id %}" class="news-image"><img
+                                        src="{{ post.image.url }}" alt="" class="img-responsive"></a>
+                                <div class="post-text">
+                                    <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                    <h4><a href="{% url 'post' post.id %}">{{ post.title|slice:":20" }}..</a></h4>
+                                     <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                       {% endfor %}
+                         {% for post in most_liked|slice:"3:4" %}
+                            <div class="col-xs-6 col-sm-6 col-md-6 thm-padding">
+                                <div class="slider-post post-height-2">
+                                    <a href="{% url 'post' post.id %}" class="news-image"><img
+                                            src="{{ post.image.url }}" alt="" class="img-responsive"></a>
+                                    <div class="post-text">
+                                        <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                        <h4><a href="{% url 'post' post.id %}">{{ post.title|slice:":20" }}..</a></h4>
+                                         <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END OF /. POST BLOCK SECTION -->
+    <style>
+        .slick-prev{
+            margin-left: 15px;
+            z-index: 100;
+        }
+        .slick-next{
+            margin-right: 15px;
+            z-index: 100;
+        }
+        .slick-next, .slick-prev {
+        font-size: 0;
+        line-height: 0;
+        position: absolute;
+        top: 50%;
+        display: block;
+        width: 30px;
+        height: 140%;
+        background: #21212178;
+        padding: 0;
+        -webkit-transform: translate(0,-50%);
+        -ms-transform: translate(0,-50%);
+        transform: translate(0,-50%);
+        cursor: pointer;
+        color: transparent;
+        border: none;
+        outline: 0;
+        /* background: 0 0; */
+        }
+        .slick-next:before, .slick-prev:before{
+            font-size: 16px;
+        }
+    </style>
+    <div class="container" >
+    <div class="featured-inner" >
+        <div style="border-bottom: rgb(107, 107, 107) 0.2px solid;margin-bottom: 5px;">
+            <h4 ><strong>Top #10 </strong>Authors</h4>
+        </div>
+        <div class="logo-slider" >
+            {% for user in users|slice:':10' %}
+            {% if user.profile %}
+                <div class="item" style="text-align:center">
+                <a href="{% url 'profile' user.profile.id %}"
+                    ><img
+                    style="
+                    padding: 2px;
+                        border-radius: 50%;
+                        border: 2px solid crimson;
+                        object-fit:cover;
+                        width: 54px;
+                        height: 54px;
+                    "
+                    src="{{user.profile.profile_pic.url}}"
+                    alt=""
+                /></a>
+                <span style="color: white;margin-right: 5px;">
+                    #{{forloop.counter}}
+                </span>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    </div>      
+    <div class="container">
+        <div class="row row-m">
+            <!-- START MAIN CONTENT -->
+            <div class="col-sm-8 col-p main-content">
+                <div class="theiaStickySidebar">
+                    <!-- START POST CATEGORY STYLE ONE (Popular news) -->
+                    <div class="post-inner">
+                        <!--post header-->
+                        <div class="post-head">
+                            <h2 class="title"><strong>Popular</strong> Posts</h2>
+
+                        </div>
+                        <!-- post body -->
+                        <div class="post-body">
+                            <div class="post-slider owl-carousel owl-theme">
+                                <!-- item one -->
+                                <div class="item">
+                                    <div class="row">
+                                        {% for post in most_viewed|slice:"1" %}
+                                            <div class="col-sm-6 main-post-inner bord-right">
+                                                <article>
+                                                    <figure>
+                                                        <a href="#"><img src="{{ post.image.url }}" height="20"
+                                                                width="20" alt="" class="img-responsive"></a>
+                                                        <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                                    </figure>
+                                                    <div class="post-info">
+                                                        <h3><a href="{% url 'post' post.id %}">{{ post.title }}..</a></h3>
+                                                        <ul class="authar-info">
+                                                        <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                        <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                        </li>
+                                                        <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                        </li>
+                                                        <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                                    </ul>
+                                                        <p>{{ post.body|slice:":250"|safe }}</p>
+                                                    </div>
+                                                </article>
+                                            </div>
+                                        {% endfor %}
+
+                                        <div class="col-sm-6">
+                                            <div class="news-list">
+                                                 {% for post in most_viewed|slice:"1:5" %} <div class="news-list-item">
+                                                    <div class="img-wrapper">
+                                                        <a href="{% url 'post' post.id %}" class="thumb">
+                                                            <img src="{{ post.image.url }}" alt=""
+                                                                class="img-responsive">
+                                                            <div class="link-icon">
+                                                                <i class="fa fa-camera"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="post-info-2">
+                                                        <h5><a href="{% url 'post' post.id %}"
+                                                                class="title">{{ post.title|slice:":48" }}..</a></h5>
+                                                         <ul class="authar-info">
+                                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                            </li>
+                                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                            </li>
+                                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                                        </ul>
+                                                    </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- item two -->
+                            <div class="item">
+                                <div class="row">
+                                    {% for post in posts|slice:"5:6" %}
+                                    <div class="col-sm-6 main-post-inner bord-right">
+                                        <article>
+                                            <figure>
+                                                <a href="#"><img src="{{ post.image.url }}" height="20"
+                                                        width="20" alt="" class="img-responsive"></a>
+                                                <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                            </figure>
+                                            <div class="post-info">
+                                                <h3><a href="{% url 'post' post.id %}">{{ post.title }}..</a>
+                                                </h3>
+                                                 <ul class="authar-info">
+                                                    <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                    <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                    </li>
+                                                    <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                    </li>
+                                                    <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                              </ul>
+                                                <p>{{ post.body|slice:":100"|safe }}</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                   {% endfor %}
+
+                                    <div class="col-sm-6">
+                                        <div class="news-list">
+                                            {% for post in posts|slice:"6:10" %}
+                                                <div class="news-list-item">
+                                                    <div class="img-wrapper">
+                                                        <a href="{% url 'post' post.id %}" class="thumb">
+                                                            <img src="{{ post.image.url }}" alt=""
+                                                                class="img-responsive">
+                                                            <div class="link-icon">
+                                                                <i class="fa fa-camera"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="post-info-2">
+                                                        <h5><a href="{% url 'post' post.id %}"
+                                                                class="title">{{ post.title|slice:":48" }}..</a></h5>
+                                                      <ul class="authar-info">
+                                                        <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                        <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                        </li>
+                                                        <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                        </li>
+                                                        <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                                    </ul>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post footer -->
+                <div class="post-footer">
+                    <div class="row thm-margin">
+                        <div class="col-xs-12 col-sm-8 col-md-9 thm-padding">
+                            <a href="#" class="more-btn">More popular posts</a>
+                        </div>
+                        <div class="hidden-xs col-sm-4 col-md-3 thm-padding">
+                            <div class="social">
+                                <ul>
+                                    <li>
+                                        <div class="share transition">
+                                            <a href="#" target="_blank" class="ico fb"><i
+                                                    class="fab fa-facebook-f"></i></a>
+                                            <a href="#" target="_blank" class="ico tw"><i
+                                                    class="fab fa-twitter"></i></a>
+                                            <a href="#" target="_blank" class="ico rs"><i class="fas fa-rss"></i></a>
+                                            <a href="#" target="_blank" class="ico pin"><i
+                                                    class="fab fa-pinterest-p"></i></a>
+                                            <i class="ti-share ico-share"></i>
+                                        </div>
+                                    </li>
+                                    <li><a href="#"><i class="ti-heart"></i></a></li>
+                                    <li><a href="#"><i class="ti-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF /. POST CATEGORY STYLE ONE (Popular news) -->
+            <!-- START ADVERTISEMENT -->
+            <div class="add-inner">
+                <img src="{% static 'images/add728x90-1.jpg' %} " class="img-responsive" alt="">
+            </div>
+            <!-- END OF /. ADVERTISEMENT -->
+            <!-- START POST CATEGORY STYLE TWO (Sports news) -->
+            <div class="post-inner post-inner-2">
+                <!--post header-->
+                <div class="post-head">
+                    <h2 class="title"><strong>Sports</strong> News</h2>
+
+                </div>
+                <!-- post body -->
+                <div class="post-body">
+                    <div class="post-slider owl-carousel owl-theme">
+                        <!-- item one -->
+                        <div class="item">
+                            <div class="row">
+                                 {% for post in posts|slice:":1" %}
+                                    <div class="col-sm-6 main-post-inner bord-right">
+                                        <article>
+                                            <figure>
+                                                <a href="#"><img src="{{ post.image.url }}" height="20"
+                                                        width="20" alt="" class="img-responsive"></a>
+                                                <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                            </figure>
+                                            <div class="post-info">
+                                                <h3><a href="{% url 'post' post.id %}">{{ post.title }}..</a>
+                                                </h3>
+                                                 <ul class="authar-info">
+                                                <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                    <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                    </li>
+                                                    <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                    </li>
+                                                    <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                                </ul>
+                                                <p style="font-weight:normal">{{ post.body|slice:":150"|safe }}...</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                               {% endfor %}
+                                <div class="col-sm-6">
+                                    <div class="news-list">
+                                        {% for post in posts|slice:":4" %} 
+                                        <div class="news-list-item">
+                                            <div class="img-wrapper">
+                                                <a href="{% url 'post' post.id %}" class="thumb">
+                                                    <img src="{{ post.image.url }}" alt=""
+                                                        class="img-responsive">
+                                                    <div class="link-icon">
+                                                        <i class="fa fa-camera"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="post-info-2">
+                                                <h5><a href="{% url 'post' post.id %}"
+                                                        class="title">{{ post.title|slice:":48" }}..</a></h5>
+                                                <ul class="authar-info">
+                                                <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                </li>
+                                                <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                            </div>
+                            </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- item two -->
+                    <div class="item">
+
+                        <div class="row">
+                             {% for post in posts|slice:":1" %}
+                              <div class="col-sm-6 main-post-inner bord-right">
+                                <article>
+                                    <figure>
+                                        <a href="{% url 'post' post.id %}"><img src="{{ post.image.url }}" height="20" width="20"
+                                                alt="" class="img-responsive"></a>
+                                        <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                    </figure>
+                                    <div class="post-info">
+                                        <h3><a href="{% url 'post' post.id %}">{{ post.title }}..</a>
+                                        </h3>
+                                        <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li>{{post.date|timesince}} ago</li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                        <p>{{ post.body|slice:":150"|safe }}</p>
+                                    </div>
+                                </article>
+                            </div>
+                            {% endfor %}
+
+                            <div class="col-sm-6">
+                                <div class="news-list">
+                                     {% for post in posts|slice:":4" %}
+                                      <div class="news-list-item">
+                                        <div class="img-wrapper">
+                                            <a href="{% url 'post' post.id %}" class="thumb">
+                                                <img src="{{ post.image.url }}" alt="" class="img-responsive">
+                                                <div class="link-icon">
+                                                    <i class="fa fa-camera"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="post-info-2">
+                                            <h5><a href="{% url 'post' post.id %}"
+                                                    class="title">{{ post.title|slice:":48" }}..</a></h5>
+                                            <ul class="authar-info">
+                                            <li class="like"><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                        </div>
+                                </div>
+                               {% endfor %}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- footer post -->
+        <div class="post-footer">
+            <div class="row thm-margin">
+                <div class="col-xs-12 col-sm-8 col-md-9 thm-padding">
+                    <a href="#" class="more-btn">More posts</a>
+                </div>
+                <div class="hidden-xs col-sm-4 col-md-3 thm-padding">
+                    <div class="social">
+                        <ul>
+                            <li>
+                                <div class="share transition">
+                                    <a href="#" target="_blank" class="ico fb"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" target="_blank" class="ico tw"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" target="_blank" class="ico rs"><i class="fas fa-rss"></i></a>
+                                    <a href="#" target="_blank" class="ico pin"><i class="fab fa-pinterest-p"></i></a>
+                                    <i class="ti-share ico-share"></i>
+                                </div>
+                            </li>
+                            <li><a href="#"><i class="ti-heart"></i></a></li>
+                            <li><a href="#"><i class="ti-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+    </div>
+    <!--  END OF /. POST CATEGORY STYLE TWO (Travel news) -->
+    </div>
+    </div>
+    <!-- END OF /. MAIN CONTENT -->
+    <!-- START SIDE CONTENT -->
+    <div class="col-sm-4 col-p rightSidebar">
+        <div class="theiaStickySidebar">
+            <!-- START LATEST REVIEWS -->
+            <div class="panel_inner review-inner">
+                <div class="panel_header">
+                    <h4><strong>Latest</strong> Articles</h4>
+                </div>
+                <div class="panel_body">
+                     {% for post in posts|slice:":1" %}
+                    <div class="more-post">
+                        <a href="{% url 'post' post.id %}" class="news-image">
+                            <img src="{{ post.image.url }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="reatting">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+
+                        <div class="post-text">
+                            <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                            <h4>{{ post.title|slice:":48" }}.. </h4>
+                             <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                        </div>
+                    </div>
+                   {% endfor %}
+                    <div class="news-list">
+                         {% for post in posts|slice:"1:4" %}
+                         <div class="news-list-item">
+                            <div class="img-wrapper">
+                                <a href="{% url 'post' post.id %}" class="thumb">
+                                    <img src="{{ post.image.url }}" alt="" class="img-responsive">
+                                    <div class="link-icon">
+                                        <i class="fa fa-camera"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="post-info-2">
+                                <h5><a href="{% url 'post' post.id %}" class="title">
+                                        {{ post.title|slice:":48" }}..
+                                    </a>
+                                </h5>
+                                <div class="reviews-reatting">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                    </div>
+                   {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- END OF /. LATEST REVIEWS -->
+       <!-- START WEATHER -->
+       <div class="weather-wrapper">
+        <div class="row thm-margin">
+            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3 weather-week thm-padding">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        <i class="flaticon-cloudy"></i>
+                        <div>Tue, 34°F</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="flaticon-sun"></i>
+                        <div>Wed, 38°F</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="flaticon-cloud"></i>
+                        <div>thu, 32°F</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="flaticon-rain"></i>
+                        <div>Fri, 31°F</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-8 col-md-9 col-lg-9 bhoechie-tab thm-padding">
+                <!-- weather temperature -->
+                <div class="weather-temp-wrap active">
+                    <div class="city-day">
+                        <div class="city">Dhaka</div>
+                        <div class="day">Tuesday, 8.00pm</div>
+                    </div>
+                    <div class="weather-icon">
+                        <i class="flaticon-cloudy"></i>
+                        <div class="main-temp">34°F</div>
+                    </div>
+                    <div class="break">
+                        <div class="wind-condition"> Wind: 13mph WSW</div>
+                        <div class="humidity">Humidity: 91%</div>
+                    </div>
+                </div>
+                <!-- weather temperature -->
+                <div class="weather-temp-wrap">
+                    <div class="city-day">
+                        <div class="city">Dhaka</div>
+                        <div class="day">Wednesday, 8.00pm</div>
+                    </div>
+                    <div class="weather-icon">
+                        <i class="flaticon-sun"></i>
+                        <div class="main-temp">38°F</div>
+                    </div>
+                    <div class="break">
+                        <div class="wind-condition"> Wind: 11mph WSW</div>
+                        <div class="humidity">Humidity: 89%</div>
+                    </div>
+                </div>
+                <!-- weather temperature -->
+                <div class="weather-temp-wrap">
+                    <div class="city-day">
+                        <div class="city">Dhaka</div>
+                        <div class="day">Wednesday, 8.00pm</div>
+                    </div>
+                    <div class="weather-icon">
+                        <i class="flaticon-cloud"></i>
+                        <div class="main-temp">32°F</div>
+                    </div>
+                    <div class="break">
+                        <div class="wind-condition"> Wind: 11mph WSW</div>
+                        <div class="humidity">Humidity: 89%</div>
+                    </div>
+                </div>
+                <!-- weather temperature -->
+                <div class="weather-temp-wrap">
+                    <div class="city-day">
+                        <div class="city">Dhaka</div>
+                        <div class="day">Friday, 8.00pm</div>
+                    </div>
+                    <div class="weather-icon">
+                        <i class="flaticon-rain"></i>
+                        <div class="main-temp">31°F</div>
+                    </div>
+                    <div class="break">
+                        <div class="wind-condition"> Wind: 16mph WSW</div>
+                        <div class="humidity">Humidity: 93%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF /. WEATHER -->
+        <!-- START NAV TABS -->
+        <div class="tabs-wrapper">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                        data-toggle="tab">Most Liked</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Popular
+                        news</a></li>
+            </ul>
+            <!-- Tab panels one -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                    <div class="most-viewed">
+                        <ul id="most-today" class="content tabs-content">
+                            {% for post in most_liked|slice:":4" %}
+                             <li><span class="count">{{post.likes.count}} <i class="fa fa-heart"></i></span><span class="text"><a
+                                        href="{% url 'post' post.id %}">
+                                        {{ post.title|slice:":48" }}..</a></span></li>
+                               {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- Tab panels two -->
+                <div role="tabpanel" class="tab-pane fade" id="profile">
+                    <div class="popular-news">
+                        {% for post in most_viewed|slice:":4" %}
+                        <div class="p-post">
+                            <h4><a href="#">{{ post.title|slice:":48" }}.. </a></h4>
+                            <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                            <div class="reatting-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- END OF /. NAV TABS -->
+    </div>
+    </div>
+    <!-- END OF /. SIDE CONTENT -->
+    </div>
+    </div>
+    
+    <!-- START FEATURED NEWS -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="featured-inner">
+                    <div id="featured-owl" class="owl-carousel">
+                         {% for post in posts|slice:":4" %}
+                          <div class="item">
+                            <div class="featured-post">
+                                <a href="{% url 'post' post.id %}" class="news-image"><img height="180px"
+                                        style="object-fit: cover; height:160px" src=" {{ post.image.url }}"
+                                        alt="" class="img-responsive"></a>
+                                <div class="reatting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <div class="post-text">
+                                    <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                    <h4>{{ post.title|slice:":48" }}..</h4>
+                                     <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                </div>
+                            </div>
+                    </div>
+                   {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- END OF /. FEATURED NEWS -->
+    <!-- START YOUTUBE VIDEO -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="youtube-wrapper">
+                    <div class="playlist-title">
+                        <h4>Latest Video News</h4>
+                    </div>
+                    <div id="rypp-demo-1" class="RYPP r16-9"
+                        data-ids="cIyVNoY3_L4,PQEX8QQ1fWg,3WWlhPmqXQI,kssD4L2NBw0,YcwrRA2BIlw,HMpmI2F2cMs,intentionally_erroneus">
+                        <div class="RYPP-video">
+                            <div class="RYPP-video-player">
+                                <!-- Will be replaced -->
+                            </div>
+                        </div>
+                        <div class="RYPP-playlist">
+                            <header>
+                                <h2 class="_h1 RYPP-title">Playlist title</h2>
+                                <p class="RYPP-desc">Playlist subtitle <a href="#" target="_blank">#hashtag</a></p>
+                            </header>
+                            <div class="RYPP-items"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF /. YOUTUBE VIDEO -->
+    <section class="articles-wrapper">
+        <div class="container">
+            <div class="row row-m">
+                <div class="col-sm-8 main-content col-p">
+                    <div class="theiaStickySidebar">
+                        <!-- START CARD POST -->
+                        <div class="row row-m">
+                            <div class="col-sm-6 col-p">
+                                {% for post in posts|slice:":1" %}
+                                <div class="posts card-post">
+                                    <div class="post-grid post-grid-item">
+                                        <figure class="posts-thumb">
+                                            <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                            <a href="{% url 'post' post.id %}">
+
+                                                <img src="{{ post.image.url }}" alt=""></a>
+                                        </figure>
+                                        <div class="posts-inner">
+                                            <a href="#" class="posts-link"></a>
+                                            <h6 class="posts-title"><a href="#">{{ post.title }}..</a></h6>
+                                            <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                        </ul>
+                                            <p class="text-align:justify">{{ post.body|slice:":500"|safe }}
+                                            </p>
+                                        </div>
+                                        <div class="posts__footer card__footer">
+                                            <div class="post-author">
+                                                <figure class="post-author-avatar hidden-xs">
+                                                    <img src="{{post.author.profile.profile_pic.url}}" alt="Post Author Avatar">
+                                                </figure>
+                                                <div class="post-author-info ">
+                                                    <h4 class="post-author-name">{{ post.author }}</h4>
+                                                </div>
+                                            </div>
+                                            <ul class="post-meta">
+                                                <li class="meta-item "><i class="ti-eye"></i> {{ post.views.count }}</li>
+                                                <li class="meta-item "><a href="#"><i class="ti-heart"></i> {{ post.views.count }}</a></li>
+                                                <li class="meta-item ">{{ post.comments.count }} <i class="ti-comments"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                               {% endfor %}
+                            </div>
+                            <div class="col-sm-6 col-p">
+                                <div class="posts">
+                                    <ul>
+                                        {% for post in posts|slice:"1:4" %} 
+                                            <li class="post-grid">
+                                                <div class="posts-inner">
+                                                    <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
+                                                    <h6 class="posts-title"><a href="{% url 'post' post.id %}">{{ post.title|slice:":48" }}..</a></h6>
+                                                    <ul class="authar-info">
+                                                        <li class="like"><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                        <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                        </li>
+                                                        <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                        </li>
+                                                        <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                                        </ul>
+                                                    <p>{{ post.body|slice:":150"|safe }}..</p>
+                                                </div>
+                                                </li>
+                                            {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END OF /. CARD POST -->
+                        <!-- START ADVERTISEMENT -->
+                        <div class="add-inner">
+                            <img src=" {% static 'images/add728x90-1.jpg' %} " class="img-responsive" alt="">
+                        </div>
+                        <!-- END OF /. ADVERTISEMENT -->
+                        <!-- START POST CATEGORY STYLE FOUR (Latest articles ) -->
+                        <div class="post-inner">
+                            <!--post header-->
+                            <div class="post-head">
+                                <h2 class="title"><strong>Buisness</strong> articles</h2>
+                            </div>
+                            <!-- post body -->
+                            <div class="post-body">
+                                {% for post in posts|slice:":4" %} 
+                                    <div class="news-list-item articles-list">
+                                        <div class="img-wrapper">
+                                            <a href="{% url 'post' post.id %}" class="thumb"><img
+                                                    src="{{ post.image.url }}" alt="" class="img-responsive"></a>
+                                        </div>
+                                        <div class="post-info-2">
+                                            <h4><a href="{% url 'post' post.id %}" class="title">{{ post.title|slice:":48" }}..</a>
+                                            </h4>
+                                            <ul class="authar-info">
+                                                <li class="like"><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                </li>
+                                                <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                            </ul>
+                                            <p class="hidden-sm">{{ post.body|slice:":150"|safe }}...</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div> <!-- /. post body -->
+                            <!--Post footer-->
+                            <div class="post-footer">
+                                <div class="row thm-margin">
+                                    <div class="col-xs-12 col-sm-8 col-md-9 thm-padding">
+                                        <!-- pagination -->
+                                        <ul class="pagination">
+                                            <li class="disabled"><span class="ti-angle-left"></span></li>
+                                            <li class="active"><span>1</span></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li class="disabled"><span class="extend">...</span></li>
+                                            <li>
+                                            <li><a href="#">12</a></li>
+                                            <li><a href="#"><i class="ti-angle-right"></i></a></li>
+                                        </ul> <!-- /.pagination -->
+                                    </div>
+                                    <div class="hidden-xs col-sm-4 col-md-3 thm-padding">
+                                        <div class="social">
+                                            <ul>
+                                                <li>
+                                                    <div class="share transition">
+                                                        <a href="#" target="_blank" class="ico fb"><i
+                                                                class="fab fa-facebook-f"></i></a>
+                                                        <a href="#" target="_blank" class="ico tw"><i
+                                                                class="fab fa-twitter"></i></a>
+                                                        <a href="#" target="_blank" class="ico rs"><i
+                                                                class="fas fa-rss"></i></a>
+                                                        <a href="#" target="_blank" class="ico pin"><i
+                                                                class="fab fa-pinterest-p"></i></a>
+                                                        <i class="ti-share ico-share"></i>
+                                                    </div>
+                                                </li>
+                                                <li><a href="#"><i class="ti-heart"></i></a></li>
+                                                <li><a href="#"><i class="ti-twitter"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- /.Post footer-->  
+                    <!-- END OF /. POST CATEGORY STYLE FOUR (Latest articles ) -->
+            <div class="col-sm-4 rightSidebar col-p">
+                <div class="theiaStickySidebar">
+                    <!-- START SOCIAL ICON -->
+                    <div class="social-media-inner">
+                        <ul class="social-media clearfix">
+                            <li>
+                                <a href="#" class="rss">
+                                    <i class="fas fa-rss"></i>
+                                    <div>2,035</div>
+                                    <p>Subscribers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="fb">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <div>3,794</div>
+                                    <p>Fans</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="insta">
+                                    <i class="fab fa-instagram"></i>
+                                    <div>941</div>
+                                    <p>Followers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="you_tube">
+                                    <i class="fab fa-youtube"></i>
+                                    <div>7,820</div>
+                                    <p>Subscribers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="twitter">
+                                    <i class="fab fa-twitter"></i>
+                                    <div>1,562</div>
+                                    <p>Followers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="pint">
+                                    <i class="fab fa-pinterest-p"></i>
+                                    <div>1,310</div>
+                                    <p>Followers</p>
+                                </a>
+                            </li>
+                        </ul> <!-- /.social icon -->
+                    </div>
+                    <!-- END OF /. SOCIAL ICON -->
+                    <!-- START GAMES RESULT POST -->
+                    <div class="panel_inner games-news">
+                        <div class="panel_header">
+                            <h4><strong>Follow us</strong> On Instagram</h4>
+                        </div>
+                        <div class="panel_body">
+                            <div class="games-result-header row">
+                            </div>
+                            <div class="posts1 games-result-main row" style="text-align:center">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OF /. GAMES RESULT POST -->
+                    <!-- START CATEGORIES WIDGET -->
+                    <div class="panel_inner categories-widget">
+                        <div class="panel_header">
+                            <h4><strong>Hot</strong> Categories</h4>
+                        </div>
+                        <div class="panel_body">
+                            <ul class="category-list">
+                                {% for cat in categories %}
+                                <li><a href="{% url 'category' cat.id %}">{{ cat.name }}<span>{{ cat.post_set.all.count }}</span></a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END OF /. CATEGORIES WIDGET -->
+                    <!-- START ADVERTISEMENT -->
+                        <div class=" add-inner">
+                                        <img src="{% static 'images/add320x270-1.jpg' %}" class="img-responsive" alt="">
+                        </div>
+                        <!-- END OF /. ADVERTISEMENT -->
+                        <!-- START ARCHIVE -->
+                        <div class="archive-wrapper">
+                            <div id="datepicker"></div>
+                        </div>
+                        <!-- END OF /. ARCHIVE -->
+                        <!-- START POLL WIDGET -->
+                        <div class="panel_inner poll-widget">
+                            <div class="panel_header">
+                                <h4><strong>Poll</strong></h4>
+                            </div>
+                            <div class="panel_body poll-content">
+                            {% for q in latest_question_list %}
+                                <form action="{% url 'vote' q.id %}" method="post">
+                                    {% csrf_token %} 
+                                        <h6>{{q.question_text}}</h6>
+                                    <ul>
+                                    {% for choice in q.choice_set.all %}
+                                        <li><input
+                                            type="radio"
+                                            name="choice"
+                                            id="choice{{ forloop.counter }}"
+                                            value="{{ choice.id }}"
+                                        />
+                                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                                         </li>
+                                    {% endfor %}
+                                    {% endfor %}
+                                    </ul>
+                                    <button type="submit" value="vote" class="btn btn-news">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END OF /. POLL WIDGET -->
+                        <!-- START TAGS -->
+                        <div class="panel_inner">
+                            <div class="panel_header">
+                                <h4><strong>Tags </strong></h4>
+                            </div>
+                            <div class="panel_body">
+                                <div class="tags-inner">
+                                    <a class="ui tag">Nature</a>
+                                    <a class="ui tag">Fashion</a>
+                                    <a class="ui tag">Wordpress</a>
+                                    <a class="ui tag">Photo</a>
+                                    <a class="ui tag">Travel</a>
+                                    <a class="ui tag">Hotel</a>
+                                    <a class="ui tag">Business</a>
+                                    <a class="ui tag">Culture</a>
+                                    <a class="ui tag">Sports</a>
+                                    <a class="ui tag">Design</a>
+                                    <a class="ui tag">Entertainment </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END OF /. TAGS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- *** END OF /. PAGE MAIN CONTENT *** -->
+
+{% endblock content %}

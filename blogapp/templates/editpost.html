@@ -1,0 +1,31 @@
+{% extends 'master.html' %} 
+{% block title %}
+Edit post
+{% endblock %}
+{% url 'post' %}
+{% block content %}
+{% if user.is_authenticated %}
+{% if post.author.id == user.id %}
+<div class="container">
+    <h3>
+        Edit a damn post
+    </h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        <table>
+        {% csrf_token %}
+         {{form.media }}
+        {{form.as_table}}
+        </table>
+        <button type="submit" class="btn btn-sm btn-primary">
+            Edit
+        </button>
+    </form>
+
+</div>
+{% else %}
+<h3 class="m-2">This it not your post</h3>
+{% endif %}
+{% else %}
+<h3 class="m-2">noo baby no</h3>
+{% endif %}
+{% endblock content %}

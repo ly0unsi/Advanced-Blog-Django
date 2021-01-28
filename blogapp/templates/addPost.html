@@ -1,0 +1,27 @@
+{% extends 'master.html' %} 
+{% block title %} Add post 
+{% endblock %} 
+{% block content %} 
+
+{% if user.is_authenticated %}
+<main class="page_main_wrapper">
+<div class="container">
+  <h3>Add a damn post</h3>
+  <form action="" method="post" enctype="multipart/form-data" class="col-md-12">
+
+      {% csrf_token %}
+      {{ form.media }}
+      {{form.as_p}}
+
+    <button type="submit" class="btn btn-sm btn-primary">Add</button>
+  </form>
+  <script>
+    var name="{{ user.id }}";
+    document.getElementById('username').value=name;
+  </script>
+</div>
+</main>
+{% else %}
+<h3 class="m-2">noo baby no</h3>
+{% endif %} 
+{% endblock content %}

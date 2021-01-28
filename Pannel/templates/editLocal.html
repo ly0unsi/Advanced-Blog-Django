@@ -1,0 +1,16 @@
+{% extends 'master2.html' %} 
+{% block title %} Edit post 
+{% endblock %}
+{% block content %}
+<div class="container">
+  <h3>Edit a damn post</h3>
+  <form action="" method="post" enctype="multipart/form-data">
+    <table>
+      {% csrf_token %} 
+      {{form.media}}
+      {{form.as_table}}
+    </table>
+    <button type="submit" class="btn btn-sm btn-primary">Edit</button>
+  </form>
+</div>
+{% endblock content %}

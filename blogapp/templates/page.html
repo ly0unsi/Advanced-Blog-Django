@@ -1,0 +1,63 @@
+@extends('frontend.master')
+@section('title')
+<title>{{$page->title}}</title>
+@endsection
+@section('content')
+<!-- *** START PAGE MAIN CONTENT *** -->
+<main class="page_main_wrapper">
+    <!-- START PAGE HEADER -->
+    <section class="inner-head bg-img" data-image-src="../assets/images/about-bg.jpg">
+        <div style="border:none" class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="entry-title">{{$page->title}}</h2>
+                    <p class="description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing
+                        condimentum tristique vel, eleifend sed turpis. Pellentesque cursus arcu id magna euismod in
+                        elementum purus molestie.
+                    </p>
+                    <div class="breadcrumb">
+                        <ul class="clearfix">
+                            <li class="ib"><a href="index-2.html">Home</a></li>
+                            <li class="ib current-page">{{$page->title}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END OF /. PAGE HEADER -->
+    <div class="team about-content">
+        <div class="container">
+            {!!$page->description!!}
+            <h2>Related Articles</h2>
+            <div class="news-grid-2">
+                <div class="row">
+                    @foreach ($all as $key=>$a)
+                    @if ($key>=0 && $key<=3) <div class="col-xs-6 col-sm-3 col-md-3">
+
+                        <div class="grid-item">
+                            <div class="grid-item-img">
+                                <a href="{{url('article')}}/{{$a->slug}}">
+                                    <img style="height: 150px;object-fit:cover" src="{{url('posts')}}/{{$a->image}}"
+                                        class="img-responsive" alt="">
+                                    <div class="link-icon"><i class="fa fa-play"></i></div>
+                                </a>
+                            </div>
+                            <h5><a href="#" class="title">{{$a->title}}</a></h5>
+                            <ul class="authar-info">
+                                <li {{$a->created_at}}</li> <li class="hidden-sm">{{$a->views}} <i
+                                        class="fa fa-eye"></i></li>
+                            </ul>
+                        </div>
+
+                </div>
+                @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+<!-- *** END OF /. PAGE MAIN CONTENT *** -->
+@stop

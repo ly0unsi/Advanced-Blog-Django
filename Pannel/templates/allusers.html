@@ -1,0 +1,54 @@
+{% extends 'master2.html' %} 
+{% block content %}
+{% load static %}
+  <!-- Page Heading -->
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" >
+        {{message}}
+        </div>
+  {% endfor %}
+  {% endif %}
+  <div class="d-flex">
+  <h1 class="h3 mb-2 text-gray-800">All users  </h1>
+  </div>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr >
+              <th>Name</th>
+              <th style="text-align: center;">Profile image</th>
+              <th style="text-align: center;">Activity</th>
+              <th>Bio</th>
+              <th style="text-align: center;">Check</th>
+            </tr>
+          </thead>
+           
+          <tbody>
+            {% for user in object_list %}
+              <tr>
+                <td>{{ user.profile.user.username}}</td>
+                <td style="text-align: center;"><img width="32" height="32" style="text-align: center;" class="rounded-circle" src="{{ user.profile.profile_pic.url }}" alt=""> </td>
+                <td style="text-align: center;">{{ user.profile.iam}}</td>
+                <td>{{ user.profile.bio|slice:":50"}}</td>
+                <td style="text-align: center;"><a href="{% url 'user' user.pk %}" class="btn btn-sm btn-primary">Check</a></td>
+              </tr>
+           {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{%  endblock %}

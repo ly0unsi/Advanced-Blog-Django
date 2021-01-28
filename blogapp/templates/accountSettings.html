@@ -1,0 +1,171 @@
+{% extends 'master.html' %} 
+{% load static %} 
+{% block content %}
+
+<style>
+  .profile-pic {
+    margin: 0 auto;
+    border-radius: 50%;
+    object-fit: cover;
+    padding:2px
+  }
+</style>
+
+<main class="page_main_wrapper">
+<div class="container py-3" style="margin-top:10px;">
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" >
+        {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+  <div class="col-md-2" style="text-align: center;">
+    <div class="card card-body" >
+      <img
+      width="80"
+      height="80"
+      style="border: 2px solid crimson;"
+        class="profile-pic"
+        src="{{author.profile_pic.url}}"
+      />
+       {% if user.profile.id != author.id %}
+      <div class="row h5">
+        <span style="color: white;" >{{author.user.username}}</span>
+      </div>
+      {% else %}
+      <div class="row h5">
+       <a style="font-size: 12px" href="{% url 'editProfile' author.pk %}">
+                <i class="fa fa-cog"></i>
+                Edit profile</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="card card-body">
+    
+      <div class="row h5">
+        <span style="color: white;" >{% if user.profile.id == author.id %}I'am: {% else %} {% if author.sexe == "Male" %} He is: {% else %} She is {% endif %}{% endif %}</span>
+         {% if author.iam %} {{author.iam}} {% else %} __ {% endif %}
+      </div>
+      <div class="row h5">
+        <span style="color: white;">Bio: </span>{% if author.bio %} {{author.bio}} {% else %} __ {% endif %}
+      </div>
+      <div class="header-social">
+        <ul style="margin-left:-10px">
+        {% if author.facebook %}
+          <li> <a href="{{author.facebook}}">
+            <i  class="fab fa-facebook text-primary"></i>
+          </a></li>
+          {% endif %}
+          {% if author.instagram %}
+          <li> <a class="text-danger" href="{{author.instagram}}">
+            <i  class="fab fa-instagram  ml-2 text-danger"></i>
+          </a></li>
+          {% endif %}
+          {% if author.twitter %}
+          <li><a class="text-info" href="{{author.twitter}}">
+            <i  class="fab fa-twitter ml-2 text-info"></i>
+          </a></li>
+          {% endif %}
+      </ul>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="container py-3" style="margin-top:10px">
+     <!-- START POST CATEGORY STYLE FOUR (Latest articles ) -->
+     <div class="post-inner">
+      <!--post header-->
+      <div class="post-head">
+          <h2 class="title"><strong>{% if user.profile.id == author.id %} My {% else %} {{author.user.username}} {% endif %}</strong> Posts</h2>
+          {% if user.is_authenticated %}
+          {% if user.profile.role == "Admin" %}
+          {% if user.profile.id == author.id %}
+          <span > <a style="color: gray;float:right;" href="{% url 'addPost' %}"> <i class="fa fa-plus" style="padding-right: 5px;"></i> </a></span>
+          {% endif %}
+          {% else %}
+          {% if user.profile.id == author.id %}
+          <span > <form  action="{% url 'authorRequest' author.id %}" method="POST"> {% csrf_token %} <button style="background: none;margin-top: -30px;border: none;float: right;" type="submit"> I wanna be an author. </button></form></span>
+          {% endif %}
+          {% endif %}
+          {% endif %}
+      </div>
+      <!-- post body -->
+      <div class="post-body">
+      {% if authorposts %}
+          {% for post in authorposts %} 
+          <div class="news-list-item articles-list">
+              <div class="img-wrapper">
+                  <a href="{% url 'post' post.id %}" class="thumb"><img
+                  style="width:95px;height:54px;object-fit:cover"
+                          src="{{ post.image.url }}" alt="" class="img-responsive"></a>
+              </div>
+              <div class="post-info-2">
+                  <h4><a href="{% url 'post' post.id %}" class="title">{{ post.title|slice:":48" }}..</a>
+                  </h4>
+                   <ul class="authar-info">
+                      <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                      </li>
+                      <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                      </li>
+                      <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                  </ul>
+                  <p class="hidden-sm">{{ post.body|slice:":400"|safe }}...</p>
+              </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      {% if user.profile.id == author.id %}You havent posted yet {% if author.sexe == "Male" %} sir {% else %} sweety {% endif %} {% else %} {% if author.sexe == "Male" %} He {% else %} she {% endif %} hasen't posted yet {% endif %}
+      {% endif %}
+  </div> <!-- /. post body -->
+  <!--Post footer-->
+  <div class="post-footer">
+      <div class="row thm-margin">
+          <div class="col-xs-12 col-sm-8 col-md-9 thm-padding">
+              <!-- pagination -->
+              {% if authorposts.has_other_pages %}
+              <ul class="pagination">
+                  {% if authorposts.has_previous %}
+                  <li> <a href="?page={{ authorposts.previous_page_number }}">  <span class="ti-angle-left"></span></a></li>
+                  {% endif %}
+                  {% for i in authorposts.paginator.page_range %}
+                  {% if authorposts.number == i %}
+                  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                  <li><a href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                  {% endfor %}
+                   {% if authorposts.has_next %}
+                  <li><a href="?page={{ authorposts.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                  {% endif %}
+              </ul>
+              {% endif %} <!-- /.pagination -->
+          </div>
+          <div class="hidden-xs col-sm-4 col-md-3 thm-padding">
+              <div class="social">
+                  <ul>
+                      <li>
+                          <div class="share transition">
+                              <a href="#" target="_blank" class="ico fb"><i
+                                      class="fab fa-facebook-f"></i></a>
+                              <a href="#" target="_blank" class="ico tw"><i
+                                      class="fab fa-twitter"></i></a>
+                              <a href="#" target="_blank" class="ico rs"><i
+                                      class="fas fa-rss"></i></a>
+                              <a href="#" target="_blank" class="ico pin"><i
+                                      class="fab fa-pinterest-p"></i></a>
+                              <i class="ti-share ico-share"></i>
+                          </div>
+                      </li>
+                      <li><a href="#"><i class="ti-heart"></i></a></li>
+                      <li><a href="#"><i class="ti-twitter"></i></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div> <!-- /.Post footer-->
+     </div>
+</main>
+{% endblock %}

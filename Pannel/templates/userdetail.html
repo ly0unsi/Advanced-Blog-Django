@@ -1,0 +1,44 @@
+{% extends 'master2.html' %} 
+{% load static %}
+{% block title %}
+{{ post.title }}
+{% endblock %}
+{% block content %}
+    <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">{{ user.profile.user.username }}
+     <img width="25" height="25" style="text-align: center;" class="rounded-circle" src="{{ user.profile.profile_pic.url }}" alt=""> 
+    </h1>
+  <p class="mb-4" style="text-align: justify;">
+    <b>Bio:</b>
+   {{ user.profile.bio }} 
+    <a target="_blank" href="https://datatables.net"
+      >official DataTables documentation</a
+    >.
+  </p>
+  <p class="mb-4" style="text-align: justify;">
+    <b>Facebook account:</b>
+    <a target="_blank" href="{{ user.profile.facebook }}"
+      >
+   {{ user.profile.facebook }} </a>.
+  </p>
+  <p class="mb-4" style="text-align: justify;">
+    <b>Instagram Account</b>
+    <a target="_blank" href="{{ user.profile.instagram }}">
+        {{ user.profile.instagram }} 
+    </a>.
+  </p>
+  <p class="mb-4" style="text-align: justify;">
+    <b>Pinterest accout</b>
+    <a target="_blank" href="{{ user.profile.pinterest }}">
+   {{ user.profile.pinterest }} </a>.
+  </p>
+  <p class="mb-4" style="text-align: justify;">
+    <b>Activity</b>
+    <a target="_blank" href="{{ user.profile.pinterest }}">
+   {{ user.profile.iam }} </a>.
+  </p>
+
+
+  
+
+{% endblock %}

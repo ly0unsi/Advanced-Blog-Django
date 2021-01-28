@@ -1,0 +1,34 @@
+{% extends 'master.html' %} 
+{% block title %}
+Add post
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+{% if post.author.id == user.id %}
+<div class="container">
+    <h3>
+       Delete '{{ post.title }}' ?
+    </h3>
+    <div class="d-flex">
+    <form action="" method="post">
+        <table>
+        {% csrf_token %}
+        
+        </table>
+        <button type="submit" class="btn btn-sm btn-danger">
+            Delete
+        </button>
+        
+    </form>
+    <a href="{% url 'home'  %}" type="submit" class="btn btn-sm btn-warning ml-2">
+        Cancel
+    </a>
+</div>
+</div>
+{% else %}
+<h3 class="m-2">This it not your post</h3>
+{% endif %}
+{% else %}
+<h3 class="m-2">noo baby no</h3>
+{% endif %}
+{% endblock content %}

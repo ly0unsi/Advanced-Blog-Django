@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <!-- Mirrored from inews.themepk.com/inews-v2.1.1_demo/dark/index_3.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Nov 2020 18:23:52 GMT -->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+
+
+   
+    <!-- Favicon and touch icons -->
+    <link
+      rel="shortcut icon"
+      href=" {% static 'images/ico/favicon.png' %} "
+      type="image/x-icon"
+    />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+      integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+      crossorigin="anonymous"
+    />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      href=" {% static 'images/ico/apple-touch-icon-57-precomposed.png' %} "
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      sizes="72x72"
+      href=" {% static 'images/ico/apple-touch-icon-72-precomposed.png' %} "
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      sizes="114x114"
+      href=" {% static 'images/ico/apple-touch-icon-114-precomposed.png' %} "
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      sizes="144x144"
+      href=" {% static 'images/ico/apple-touch-icon-144-precomposed.png' %} "
+    />
+
+    <!--Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- jquery ui css -->
+    <link
+      href=" {% static 'plugins/jqueryui/jquery-ui.min.css' %} "
+       rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+   <link
+   href=" {% static 'plugins/bootstrap/css/bootstrap.min.css' %} "
+    rel="stylesheet"
+    />
+    <!--Animate css-->
+    <link
+      href=" {% static 'plugins/animate.css/animate.min.css' %} "
+       rel="stylesheet"
+    />
+    <!-- Navigation css-->
+    <link
+      href=" {% static 'plugins/bootsnav/css/bootsnav.min.css' %} "
+       rel="stylesheet"
+    />
+    <!-- youtube css -->
+    <link href=" {% static 'css/RYPP.css' %} "
+    rel="stylesheet" />
+    
+    <!-- font awesome -->
+    <link
+      href=" {% static 'plugins/fontawesome/css/all.min.css' %} "
+      
+      rel="stylesheet" 
+    />
+    <!-- themify-icons -->
+    <link
+      href=" {% static 'plugins/themify-icons/themify-icons.css' %} "
+       rel="stylesheet"
+    />
+    <!-- weather-icons -->
+    <link
+      href=" {% static 'plugins/weather-icons/css/weather-icons.min.css' %} "
+       rel="stylesheet"
+    />
+    <!-- Important Owl stylesheet -->
+    <link
+      href=" {% static 'plugins/OwlCarousel2/css/owl.carousel.min.css' %} "
+       rel="stylesheet"
+    />
+    <!-- Default Theme -->
+    <link
+      href=" {% static 'plugins/OwlCarousel2/css/owl.theme.default.min.css' %} "
+      rel="stylesheet"
+    />
+    <!-- owl transitions -->
+    <!-- style css -->
+    <link href=" {% static 'css/style.css' %}" rel="stylesheet" />
+    <!--Style selector-->
+    <link
+      href=" {% static 'plugins/style-selector/style_selector.css' %} "
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="skin-dark" style="transform: none">
+    <!-- PAGE LOADER -->
+    <div class="se-pre-con"></div>
+    <!-- *** START PAGE HEADER SECTION *** -->
+    <header>
+      <!-- START HEADER TOP SECTION -->
+      <div class="header-top">
+        <div style="border: none" class="container">
+          <div class="row">
+            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+              <!-- Start header social -->
+              <div class="header-social">
+                <ul>
+                  <li>
+                    <a href="{{links.facebook}}"><i class="fab fa-{{facebookicon}}"></i></a>
+                  </li>
+                  <li>
+                    <a href="{{links.twitter}}"><i class="fab fa-{{twittericon}}"></i></a>
+                  </li>
+                  <li>
+                    <a href="{{links.pinterest}}"><i class="fab fa-{{pinteresticon}}"></i></a>
+                  </li>
+                  <li>
+                    <a href="{{links.instagram}}"><i class="fab fa-{{instagramicon}}"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <!-- End of /. header social -->
+              <!-- Start top left menu -->
+              <div class="top-left-menu">
+                <ul>
+                  {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'profile' user.profile.id %}">
+                        <img   width="20" height="20" style="object-fit: cover;border-radius: 50%;" src="{{ user.profile.profile_pic.url }}" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                      <a
+                          href="{% url 'logout' %}"
+                          type="submit"
+                      >
+                          <i class="fa fa-sign-out-alt"></i>
+                      </a>
+                      </li>
+                      {% else %}
+                      <li>
+                      <a
+                      href="{% url 'login' %}"
+                      class="btn btn-outline-light mr-2 btn-sm my-2 my-sm-0"
+                      type="submit"
+                      >
+                     
+                      Login,
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="{% url 'register' %}"
+                            class="btn btn-outline-light mr-2 btn-sm my-2 my-sm-0"
+                            type="submit"
+                          >
+                      Register
+                      </a>
+                      {% endif %}
+                    </li>
+                </ul>
+              </div>
+              <!-- End of /. top left menu -->
+            </div>
+             <!-- Start header top right menu -->
+             <div class="hidden-xs col-md-6 col-sm-6 col-lg-6">
+              <div class="header-right-menu">
+                  <ul>
+                    <li><a href="{% url 'contact' %}">Contact <i  class="fa fa-envelope"></i></a></li>
+                    <li><a href="#">Donation <i  class="fa fa-dollar-sign"></i></a></li>
+              </div>
+          </div> <!-- end of /. header top right menu -->
+          </div>
+          <!-- end of /. row -->
+        </div>
+        <!-- end of /. container -->
+      </div>
+      <!-- END OF /. HEADER TOP SECTION -->
+      <!-- START MIDDLE SECTION -->
+      <div class="header-mid hidden-xs">
+        <div style="border: none" class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="logo">
+                <a href="{% url 'home' %}"
+                  ><img
+                    src=" {% static 'images/logo-white.png' %} "
+                    class="img-responsive"
+                    alt=""
+                /></a>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <a href="#"
+                ><img
+                  src=" {% static 'images/add728x90-1.jpg' %} "
+                  class="img-responsive"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END OF /. MIDDLE SECTION -->
+      <!-- START NAVIGATION -->
+      <nav class="navbar navbar-default navbar-sticky navbar-mobile bootsnav">
+        <!-- Start Top Search -->
+        <div class="top-search container">
+          <div style="border: none" class="container">
+            <div class="input-group">
+              <span class="input-group-addon"
+                ><i class="fa fa-search"></i
+              ></span>
+              <input
+                id="search_content"
+                type="text"
+                class="form-control"
+                placeholder="Search"
+              />
+              <div style="color: black" id="search_output"></div>
+              <span class="input-group-addon close-search"
+                ><i class="fa fa-times"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+        <!-- End Top Search -->
+        <div class="container">
+          <!-- Start Atribute Navigation -->
+          <div class="attr-nav">
+            <ul>
+              <li class="search">
+                <a href="#"><i class="fa fa-search"></i></a>
+              </li>
+            </ul>
+          </div>
+          <!-- End Atribute Navigation -->
+          <!-- Start Header Navigation -->
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle"
+              data-toggle="collapse"
+              data-target="#navbar-menu"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+            <a
+              class="navbar-brand hidden-sm hidden-md hidden-lg"
+              href="{% url 'home' %}"
+              ><img
+                src=" {% static 'images/logo-white.png' %}"
+                class="logo"
+                alt=""
+            /></a>
+          </div>
+          <!-- End Header Navigation -->
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav navbar-left" data-in="" data-out="">
+              <li class="dropdown active">
+                <a style="font-size: 19px" class="active" href="{% url 'home'%}"
+                  >Home</a
+                >
+              </li>
+
+              {% for cat in categories %}
+              <li>
+                <a
+                  style="font-size: 12px"
+                  href="{% url 'category' cat.id %}"
+                  >{{cat.name}}</a
+                >
+              </li>
+              
+              {% endfor %}
+              {% if user.is_authenticated %}
+              {% if user.profile.role == "Admin" %}
+              <li >
+                  <a style="font-size: 12px" href="{% url 'addPost' %}">
+                    <i class="fa fa-plus-circle"></i>
+                    Add a post</a>
+              </li>
+              {% endif %}
+              {% endif %}
+             
+              {% if user.profile %}
+              <li >
+              <a style="font-size: 12px" href="{% url 'editProfile' user.profile.pk %}">
+                <i class="fa fa-cog"></i>
+                Edit profile</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+      </nav>
+      <!-- END OF/. NAVIGATION -->
+    </header>
+    <!-- *** END OF /. PAGE HEADER SECTION *** -->
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- *** START FOOTER *** -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <!-- START FOOTER BOX (About) -->
+          <div class="col-sm-3 footer-box">
+            <div class="about-inner">
+              <img
+                src=" {% static 'images/logo-white.png' %} "
+                class="img-responsive"
+                alt=""
+              />
+              <p style="text-align: justify">{{links.About|safe|slice:":100"}}</p>
+              <ul>
+                <li>
+                  <i class="ti-location-arrow"></i>1234 Heaven Stress, Beverly
+                  Hill.
+                </li>
+                <li><i class="ti-mobile"></i>067484572</li>
+                <li><i class="ti-email"></i>abdllahlyounsi@gmail.com</li>
+              </ul>
+            </div>
+          </div>
+          <!--  END OF /. FOOTER BOX (About) -->
+          <!-- START FOOTER BOX (Twitter feeds) -->
+          <div class="col-sm-3 footer-box">
+            <div class="twitter-inner">
+              <h3 class="wiget-title">twitter feeds</h3>
+              <ul class="margin-top-60">
+                <li>
+                  Typi non habent claritatem insitam est usus legent is iis qui
+                  facit claritatem. Investigatione
+                  <a href="https://t.co/erenthemeGHTQ"
+                    >https://t.co/erenthemeGHTQ</a
+                  >
+                  <span><i class="ti-twitter"></i>12 days ago</span>
+                </li>
+                <li>
+                  Typi non habent claritatem insitam est usus legent is
+                  <a href="https://t.co/erenthemeGHTQ"
+                    >https://t.co/erenthemeGHTQ</a
+                  >
+                  <span><i class="ti-twitter"></i>10 days ago</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- END OF /. FOOTER BOX (Twitter feeds) -->
+          <!-- START FOOTER BOX (Category) -->
+          <div class="col-sm-2 footer-box">
+            <h3 class="wiget-title">Category</h3>
+            <ul class="menu-services">
+             {% for cat in categories %}
+              <li>
+                <a href="{% url 'category' cat.id %}">{{cat.name}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <!-- END OF /. FOOTER BOX (Category) -->
+          <!-- START FOOTER BOX (Recent Post) -->
+          <div class="col-sm-4 footer-box">
+            <h3 class="wiget-title">Recent Post</h3>
+            <div class="footer-news-grid">
+              {% for post in posts|slice:":2" %}
+                <div class="news-list-item">
+                    <div class="img-wrapper">
+                    <a href="{% url 'post' post.pk %}" class="thumb">
+                        <img
+                        src="{{post.image.url}}"
+                        alt=""
+                        class="img-responsive"
+                        />
+                        <div class="link-icon">
+                        <i class="fa fa-camera"></i>
+                        </div>
+                    </a>
+                    </div>
+                    <div class="post-info-2">
+                    <h5>
+                        <a href="{% url 'post' post.pk %}" class="title"
+                        >{{post.title}}</a
+                        >
+                    </h5>
+                    <ul class="authar-info">
+                        <li><i class="ti-timer"></i>{{post.date}}</li>
+                    </ul>
+                    </div>
+                </div>
+             {% endfor %}
+            </div>
+          </div>
+          <!-- END OF /. FOOTER BOX (Recent Post) -->
+        </div>
+      </div>
+    </footer>
+   <!-- START SUB FOOTER -->
+        <div class="sub-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5 col-md-5">
+                        <div class="copy">Copyright@2021 I-News Inc.</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-7">
+                        <ul class="footer-nav">
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="#">Donation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END OF /. SUB FOOTER -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+
+    <!--Purchase button-->
+    <script src="{% static 'plugins/jquery/jquery.js' %}"></script>
+    <!-- jquery ui js -->
+    <script src="{% static 'plugins/jqueryui/jquery-ui.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- Bootsnav js -->
+    <script src="{% static 'plugins/bootsnav/js/bootsnav.min.js' %}"></script>
+    <!-- theia sticky sidebar -->
+    <script src="{% static 'plugins/theia-sticky-sidebar/ResizeSensor.min.js' %}"></script>
+    <script src="{% static 'plugins/theia-sticky-sidebar/theia-sticky-sidebar.min.js' %}"></script>
+    <!-- youtube js -->
+    <script src="{% static 'plugins/youtube-player/js/RYPP.js' %}"></script>
+    <!-- owl include js plugin -->
+    <script src="{% static 'plugins/OwlCarousel2/owl.carousel.min.js' %}"></script>
+    <!-- skycons plugin -->
+    <script src="{% static 'plugins/skycons/skycons.js' %}"></script>
+    <!-- custom js -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <!-- google map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4iuUg1YDRIBRZ5e-jdssfqDuT9VLiOnY"></script>
+   
+
+    <!--Style selector-->
+    <script src=" {% static 'plugins/style-selector/style_selector.js' %} "></script>
+    <!--Weather app-->
+    <script
+      src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1" defer></script>
+     <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+      integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(".logo-slider").slick({
+        slidesToShow: 5,
+        slidesToScroll: 3,
+        dots: false,
+        arrows:true,
+        autoplay: true,
+        infinite: false,
+      });
+    </script>
+    <div class="style-settings opened">
+      <div class="style-settings-icon">&nbsp;</div>
+      <div class="style-settings-content">
+        <h4>Light/Dark Version</h4>
+        <ul>
+          <li class="clearfix">
+            <label>Color Scheme</label>
+            <select name="color_scheme">
+              <option class="option" value="light-mode">Light</option>
+              <option class="option" value="skin-dark" selected="selected">
+                Dark
+              </option>
+            </select>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+
+  <!-- Mirrored from inews.themepk.com/inews-v2.1.1_demo/dark/index_3.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Nov 2020 18:23:52 GMT -->
+</html>

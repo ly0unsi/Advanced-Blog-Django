@@ -1,0 +1,353 @@
+{% extends 'master.html' %} 
+{% block title %}
+{{category1.name}}
+{% endblock %}
+{% block content %}
+{% load static %}
+<!-- START PAGE TITLE -->
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <h1><strong>{{category1.name}}</strong> </h1>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ol class="breadcrumb">
+                    <li><a href="index-2.html">Home</a></li>
+                    <li class="active"><a >{{category1.name}}</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF /. PAGE TITLE -->
+<!-- *** START PAGE MAIN CONTENT *** -->
+<main class="page_main_wrapper">
+    <!-- START POST BLOCK SECTION -->
+    <!-- START POST BLOCK SECTION -->
+    <section class="slider-inner">
+        <div class="container">
+            <div class="row thm-margin">
+                <div class="col-xs-12 col-sm-6 col-md-6 thm-padding">
+                    <div class="slider-wrapper">
+                        <div id="owl-slider" class="owl-carousel owl-theme">
+                            <!-- Slider item one -->
+                            {% for post in posts_category %}
+                             <div class="item">
+                                <div class="slider-post post-height-1">
+                                    <a href="{% url 'post' post.id %}" class="news-image">
+                                        <img  style="height:275px" src="{{post.image.url}}" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="post-text">
+                                        <span class="post-category"><a href="{% url 'category' post.category.id %}">{{post.category}}</span>
+                                        <h2><a href="{% url 'post' post.id %}">{{post.title}}</a></h2>
+                                        <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"> <img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""> </a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </div>
+                       {% endfor %}
+                        <!-- /.Slider item one -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 thm-padding">
+                <div class="row slider-right-post thm-margin">
+                   {% for post in posts_category|slice:":1" %}
+                    <div class="col-xs-6 col-sm-12 col-md-12 thm-padding hidden-xs">
+                        <div class="slider-post post-height-2">
+                            <a href="{% url 'post' post.id %}" class="news-image"><img
+                                    src="{{post.image.url}}" alt="" class="img-responsive"></a>
+                            <div class="post-text">
+                                <span class="post-category"><a href="{% url 'category' post.category.id %}">{{post.category}}</span>
+                                <h4><a href="{% url 'post' post.id %}">{{post.title}}</a></h4>
+                                <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"> <img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""> </a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                        </ul>
+                            </div>
+                        </div>
+                    </div>
+                   {% endfor %}
+                   {% for post in posts_category|slice:"1:2" %}
+                    <div class="col-xs-6 col-sm-6 col-md-6 thm-padding">
+                        <div class="slider-post post-height-2">
+                            <a href="{% url 'post' post.id %}" class="news-image"><img
+                                    src="{{post.image.url}}" alt="" class="img-responsive"></a>
+                            <div class="post-text">
+                                <span class="post-category"><a href="{% url 'category' post.category.id %}">{{post.category}}</span>
+                                <h4><a href="{% url 'post' post.id %}">{{post.title}}</a></h4>
+                                <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"> <img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""> </a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                        </ul>
+                            </div>
+                        </div>
+                    </div>
+                   {% endfor %}
+                    {% for post in posts_category|slice:"2:3" %}
+                    <div class="col-xs-6 col-sm-6 col-md-6 thm-padding">
+                        <div class="slider-post post-height-2">
+                            <a href="{{post.image.url}}" class="news-image"><img
+                                    src="{{post.image.url}}" alt="" class="img-responsive"></a>
+                            <div class="post-text">
+                                <span class="post-category"><a href="{% url 'category' post.category.id %}">{{post.category}}</span>
+                                <h4><a href="{% url 'post' post.id %}">{{post.title}}</a></h4>
+                               <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"> <img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""> </a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                        </ul>
+                            </div>
+                        </div>
+                    </div>
+                   {% endfor %}
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- END OF /. POST BLOCK SECTION -->
+
+    <div class="container">
+        <div class="row row-m">
+            <!-- START MAIN CONTENT -->
+            <div class="col-sm-8 col-p  main-content">
+                <div class="theiaStickySidebar">
+                    <div class="post-inner categoty-style-1">
+                        <!-- post body -->
+                        <div class="post-body">
+                            <div class="row row-m">
+                               {% for post in posts_category %}
+                                <div class="col-sm-6 col-p">
+                                    <article>
+                                        <figure>
+                                            <a href="{% url 'post' post.id %}"><img
+                                                    style="height: 180px;object-fit:cover"
+                                                    src="{{post.image.url}}" height="242" width="345" alt=""
+                                                    class="img-responsive"></a>
+                                            <span class="post-category"><a href="{% url 'category' post.category.id %}">{{post.category}}</span>
+                                        </figure>
+                                        <div class="post-info">
+                                            <h3><a href="{% url 'post' post.id %}"></a>{{post.title}}</h3>
+                                            <ul class="authar-info">
+                                            <li><a href="{% url 'profile' post.author.profile.id %}"> <img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""> </a></li>
+                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                            </li>
+                                        </ul>
+                                        </div>
+                                    </article>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- footer post -->
+                    <!--Post footer-->
+  <div class="post-footer">
+      <div class="row thm-margin">
+          <div class="col-xs-12 col-sm-8 col-md-9 thm-padding">
+              <!-- pagination -->
+              {% if posts_category.has_other_pages %}
+              <ul class="pagination">
+                  {% if posts_category.has_previous %}
+                  <li> <a href="?page={{ posts_category.previous_page_number }}">  <span class="ti-angle-left"></span></a></li>
+                  {% endif %}
+                  {% for i in posts_category.paginator.page_range %}
+                  {% if posts_category.number == i %}
+                  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                  <li><a href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                  {% endfor %}
+                   {% if posts_category.has_next %}
+                  <li><a href="?page={{ posts_category.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                  {% endif %}
+              </ul>
+              {% endif %} <!-- /.pagination -->
+          </div>
+          <div class="hidden-xs col-sm-4 col-md-3 thm-padding">
+              <div class="social">
+                  <ul>
+                      <li>
+                          <div class="share transition">
+                              <a href="#" target="_blank" class="ico fb"><i
+                                      class="fab fa-facebook-f"></i></a>
+                              <a href="#" target="_blank" class="ico tw"><i
+                                      class="fab fa-twitter"></i></a>
+                              <a href="#" target="_blank" class="ico rs"><i
+                                      class="fas fa-rss"></i></a>
+                              <a href="#" target="_blank" class="ico pin"><i
+                                      class="fab fa-pinterest-p"></i></a>
+                              <i class="ti-share ico-share"></i>
+                          </div>
+                      </li>
+                      <li><a href="#"><i class="ti-heart"></i></a></li>
+                      <li><a href="#"><i class="ti-twitter"></i></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div> <!-- /.Post footer-->
+
+                </div>
+            </div>
+        </div> <!-- END OF /. MAIN CONTENT -->
+        <!-- START SIDE CONTENT -->
+        
+        <div class="col-sm-4 col-p rightSidebar">
+            <div class="theiaStickySidebar">
+             <!-- START POLL WIDGET -->
+                        <div class="panel_inner poll-widget">
+                            <div class="panel_header">
+                                <h4><strong>Poll</strong></h4>
+                            </div>
+                            <div class="panel_body poll-content">
+                            {% for q in latest_question_list %}
+                                <form action="{% url 'vote' q.id %}" method="post">
+                                    {% csrf_token %} 
+                                        <h6>{{q.question_text}}</h6>
+                                    <ul>
+                                    {% for choice in q.choice_set.all %}
+                                        <li><input
+                                            type="radio"
+                                            name="choice"
+                                            id="choice{{ forloop.counter }}"
+                                            value="{{ choice.id }}"
+                                        />
+                                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                                         </li>
+                                    {% endfor %}
+                                    {% endfor %}
+                                    </ul>
+                                    <button type="submit" value="vote" class="btn btn-news">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END OF /. POLL WIDGET -->
+                <!-- START SOCIAL ICON -->
+                <div class="social-media-inner">
+                    <ul class="social-media clearfix">
+                        <li>
+                            <a href="#" class="rss">
+                                <i class="fas fa-rss"></i>
+                                <div>2,035</div>
+                                <p>Subscribers</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="fb">
+                                <i class="fab fa-facebook-f"></i>
+                                <div>3,794</div>
+                                <p>Fans</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="insta">
+                                <i class="fab fa-instagram"></i>
+                                <div>941</div>
+                                <p>Followers</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="you_tube">
+                                <i class="fab fa-youtube"></i>
+                                <div>7,820</div>
+                                <p>Subscribers</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="twitter">
+                                <i class="fab fa-twitter"></i>
+                                <div>1,562</div>
+                                <p>Followers</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="pint">
+                                <i class="fab fa-pinterest-p"></i>
+                                <div>1,310</div>
+                                <p>Followers</p>
+                            </a>
+                        </li>
+                    </ul> <!-- /.social icon -->
+                </div>
+                <!-- END OF /. SOCIAL ICON -->
+                <!-- START ADVERTISEMENT -->
+                <div class="add-inner">
+                    <img src="../assets/images/add320x270-1.jpg" class="img-responsive" alt="">
+                </div>
+                <!-- END OF /. ADVERTISEMENT -->
+               <!-- START NAV TABS -->
+                <div class="tabs-wrapper">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                data-toggle="tab">Most Liked</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Popular
+                                news</a></li>
+                    </ul>
+                    <!-- Tab panels one -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="home">
+                            <div class="most-viewed">
+                                <ul id="most-today" class="content tabs-content">
+                                    {% for post in most_liked|slice:":4" %}
+                                    <li><span class="count">{{post.likes.count}} <i class="fa fa-heart"></i></span><span class="text"><a
+                                                href="{% url 'post' post.id %}">
+                                                {{ post.title|slice:":48" }}..</a></span></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Tab panels two -->
+                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                            <div class="popular-news">
+                                {% for post in most_viewed|slice:":4" %}
+                                <div class="p-post">
+                                    <h4><a href="#">{{ post.title|slice:":48" }}.. </a></h4>
+                                    <ul class="authar-info">
+                                                    <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
+                                                    <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
+                                                    </li>
+                                                    <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+                                                    </li>
+                                                    <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
+                                                </ul>
+                                    <div class="reatting-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END OF /. NAV TABS -->
+            </div>
+        </div>
+        <!-- END OF /. SIDE CONTENT -->
+    </div>
+    </div>
+</main>
+<!-- *** END OF /. PAGE MAIN CONTENT *** -->
+
+{% endblock %}

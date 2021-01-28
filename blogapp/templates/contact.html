@@ -1,0 +1,189 @@
+{% extends 'master.html' %}
+{% block title %}
+{{"Contact Us"}}
+{% endblock title %}
+{% block content %}
+{% load static %}
+        <!-- START PAGE TITLE --> 
+        <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <h1><strong>Contact</strong></h1>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <ol class="breadcrumb">
+                            <li><a href="index-2.html">Home</a></li>
+                            <li class="active"><a href="contact.html">Contact</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END OF /. PAGE TITLE --> 
+        <!-- *** START PAGE MAIN CONTENT *** -->
+        <main class="page_main_wrapper">
+            <div class="container">
+                <div class="row row-m">
+                    <div class="col-sm-8 main-content col-p">
+                        <div class="theiaStickySidebar">
+                            <!-- START CONTACT FORM AREA -->
+                            <div class="contact_form_inner">
+                                <div class="panel_inner">
+                                    <div class="panel_header">
+                                        <h4><strong>We'd Love to Here</strong> Form you, Get in Touch With in Us? </h4>
+                                    </div>
+                                    <div class="panel_body">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
+                                            text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 
+                                            survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                        <form class="comment-form" method="post">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                
+                                                <div class="col-sm-12">
+                                                    <label for="email">Subject</label>
+                                                    <div class="form-group">
+                                                        {{messageformset.subject}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">message</label>
+                                                {{messageformset.message}}
+                                            </div>
+                                            <button href="#"  class="btn btn-news"> Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END OF CONTACT FORM AREA -->
+                        </div>
+                    </div>
+                    <div class="col-sm-4 rightSidebar col-p">
+                        <div class="theiaStickySidebar">
+                            <!-- START CONTACT INFO -->
+                            <div class="panel_inner">
+                                <div class="panel_header">
+                                    <h4><strong>Contact</strong> Info </h4>
+                                </div>
+                                <div class="panel_body">
+                                    <address> <strong>Twitter, Inc.</strong><br> <abbr title="Phone">Phone:</abbr> +212674845729</address>
+                                    <address> <strong>Full Name</strong><br> <a href="mailto:abdllahlyounsi@gmail.com">abdllahlyounsi@gmail.com</a> </address>
+                                </div>
+                            </div>
+                            <!-- END OF /. CONTACT INFO -->
+                            <!-- START SOCIAL ICON -->
+                            <div class="social-media-inner">
+                                <ul class="social-media clearfix">
+                                    <li>
+                                        <a href="#" class="rss">
+                                            <i class="fas fa-rss"></i>
+                                            <div>2,035</div>
+                                            <p>Subscribers</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fb">
+                                            <i class="fab fa-facebook-f"></i>
+                                            <div>3,794</div>
+                                            <p>Fans</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="insta">
+                                            <i class="fab fa-instagram"></i>
+                                            <div>941</div>
+                                            <p>Followers</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="you_tube">
+                                            <i class="fab fa-youtube"></i>
+                                            <div>7,820</div>
+                                            <p>Subscribers</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="twitter">
+                                            <i class="fab fa-twitter"></i>
+                                            <div>1,562</div>
+                                            <p>Followers</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="pint">
+                                            <i class="fab fa-pinterest-p"></i>
+                                            <div>1,310</div>
+                                            <p>Followers</p>
+                                        </a>
+                                    </li>
+                                </ul> <!-- /.social icon -->     
+                            </div>
+                            <!-- END OF /. SOCIAL ICON -->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel_inner">
+                    <div class="panel_body">
+                        <!-- The element that will contain Google Map. This is used in both the Javascript and CSS above. -->
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- *** END OF /. PAGE MAIN CONTENT *** -->
+      
+       
+    
+        <!-- google map -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4iuUg1YDRIBRZ5e-jdssfqDuT9VLiOnY"></script>
+        <script>
+            // When the window has finished loading create our google map below
+            google.maps.event.addDomListener(window, 'load', init);
+
+            function init() {
+                // Basic options for a simple Google Map
+                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                var mapOptions = {
+                    // How zoomed in you want the map to start at (always required)
+                    zoom: 10, scrollwheel: false,
+                    // The latitude and longitude to center the map (always required)
+                    center: new google.maps.LatLng(23.8103968, 90.41256666), //Dhaka
+
+                    // How you would like to style the map. 
+                    // This is where you would paste any style found on Snazzy Maps.
+                    styles: [{"featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{"color": "#444444"}]}, {"featureType": "administrative.locality", "elementType": "labels.text.stroke", "stylers": [{"visibility": "on"}]}, {"featureType": "administrative.locality", "elementType": "labels.icon", "stylers": [{"visibility": "on"}, {"color": "#f1c40f"}]}, {"featureType": "landscape", "elementType": "all", "stylers": [{"color": "#f2f2f2"}]}, {"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "off"}]}, {"featureType": "road", "elementType": "all", "stylers": [{"saturation": -100}, {"lightness": 45}]}, {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "simplified"}]}, {"featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{"visibility": "off"}]}, {"featureType": "transit", "elementType": "all", "stylers": [{"visibility": "off"}]}, {"featureType": "water", "elementType": "all", "stylers": [{"color": "#eb0254"}, {"visibility": "on"}]}]
+                };
+
+                // image from external URL
+
+                var myIcon = 'assets/images/marker.html';
+
+                //preparing the image so it can be used as a marker
+                //https://developers.google.com/maps/documentation/javascript/reference#Icon
+                //includes hacky fix "size" to allow for wobble
+                var catIcon = {
+                    url: myIcon,
+                };
+
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+                var mapElement = document.getElementById('map');
+
+                // Create the Google Map using our element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+
+                // Let's also add a marker while we're at it
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(23.8103968, 90.41256666), //Dhaka
+                    map: map,
+                    icon: catIcon,
+                    title: 'Snazzy!',
+                    animation: google.maps.Animation.DROP,
+                });
+            }
+        </script>
+        <!--Style selector-->
+        
+     {% endblock %}

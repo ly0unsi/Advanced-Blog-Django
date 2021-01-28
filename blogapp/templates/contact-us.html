@@ -1,0 +1,181 @@
+@extends('frontend.master')
+@section('title')
+<title>{{"Home"}}</title>
+@endsection
+@section('content')
+<!-- START PAGE TITLE -->
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <h1><strong>Contact</strong></h1>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ol class="breadcrumb">
+                    <li><a href="index-2.html">Home</a></li>
+                    <li class="active"><a href="contact.html">Contact</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END OF /. PAGE TITLE -->
+<!-- *** START PAGE MAIN CONTENT *** -->
+<main class="page_main_wrapper">
+    <div class="container">
+        <div class="row row-m">
+            <div class="col-sm-8 main-content col-p">
+                <div class="theiaStickySidebar">
+                    <!-- START CONTACT FORM AREA -->
+                    <div class="contact_form_inner">
+                        <div class="panel_inner">
+                            <div class="panel_header">
+                                <h4>
+                                    <strong>We'd Love to Here</strong> Form you,
+                                    Get in Touch With in Us?
+                                </h4>
+                                @if (Session::has('message'))
+                                <div style="
+                                        font-family: sans-serif;
+                                        margin-top: 10px;
+                                    " class="alert alert-success alert-dismissable fade in">
+                                    <a href="#" data-dismiss="alert" class="close">&times;</a>
+                                    {{Session('message')}}
+                                </div>
+                                @endif
+                            </div>
+                            <div class="panel_body">
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the
+                                    printing and typesetting industry. Lorem
+                                    Ipsum has been the industry's standard dummy
+                                    text ever since the 1500s, when an unknown
+                                    printer took a galley of type and scrambled
+                                    it to make a type specimen book. It has
+                                    survived not only five centuries, but also
+                                    the leap into electronic typesetting,
+                                    remaining essentially unchanged.
+                                </p>
+                                <form class="comment-form" action="{{url('addMessage')}}" method="post">
+                                    <input type="hidden" name="tbl" value="{{encrypt('messages')}}" />
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="name">full name*</label>
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    placeholder="Your name*" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="email">Email*</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="email" name="email"
+                                                    placeholder="Your email address here" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">message</label>
+                                        <textarea class="form-control" id="message" name="message"
+                                            placeholder="Your Comment*" rows="5"></textarea>
+                                    </div>
+                                    <button class="btn btn-news"> Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OF CONTACT FORM AREA -->
+                </div>
+            </div>
+            <div class="col-sm-4 rightSidebar col-p">
+                <div class="theiaStickySidebar">
+                    <!-- START CONTACT INFO -->
+                    <div class="panel_inner">
+                        <div class="panel_header">
+                            <h4><strong>Contact</strong> Info</h4>
+                        </div>
+                        <div class="panel_body">
+                            <address>
+                                <strong>Akhbaar, Inc.</strong><br />
+                                Kenitra,Morocco<br />
+                                San Francisco, CA 94103<br />
+                                <abbr title="Phone">P:</abbr> 0674845729
+                            </address>
+                            <address>
+                                <strong>Twitter, Inc.</strong><br />
+                                <abbr title="Phone">Phone:</abbr>
+                                1.800.555.6789<br />
+                                Fax: 1.888.555.9876<br />
+                                <abbr title="Phone">P:</abbr> (123) 456-7890
+                            </address>
+                            <address>
+                                <strong>Email</strong><br />
+                                <a href="mailto:abdllahlyounsi@gmail.com">abdllahlyounsi@gmail.com</a>
+                            </address>
+                        </div>
+                    </div>
+                    <!-- END OF /. CONTACT INFO -->
+                    <!-- START SOCIAL ICON -->
+                    <div class="social-media-inner">
+                        <ul class="social-media clearfix">
+                            <li>
+                                <a href="#" class="rss">
+                                    <i class="fas fa-rss"></i>
+                                    <div>2,035</div>
+                                    <p>Subscribers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="fb">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <div>3,794</div>
+                                    <p>Fans</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="insta">
+                                    <i class="fab fa-instagram"></i>
+                                    <div>941</div>
+                                    <p>Followers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="you_tube">
+                                    <i class="fab fa-youtube"></i>
+                                    <div>7,820</div>
+                                    <p>Subscribers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="twitter">
+                                    <i class="fab fa-twitter"></i>
+                                    <div>1,562</div>
+                                    <p>Followers</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="pint">
+                                    <i class="fab fa-pinterest-p"></i>
+                                    <div>1,310</div>
+                                    <p>Followers</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.social icon -->
+                    </div>
+                    <!-- END OF /. SOCIAL ICON -->
+                </div>
+            </div>
+        </div>
+        <div class="panel_inner">
+            <div class="panel_body">
+                <!-- The element that will contain Google Map. This is used in both the Javascript and CSS above. -->
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- *** END OF /. PAGE MAIN CONTENT *** -->
+@stop
