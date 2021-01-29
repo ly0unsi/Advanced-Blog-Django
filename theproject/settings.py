@@ -26,7 +26,7 @@ SECRET_KEY = 'hn*mc)a#*h)7^k%z0=gu8c^h-(vl34x+i-%*o3b2e4z)ln9ezv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['readose.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
