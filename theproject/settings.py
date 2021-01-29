@@ -26,7 +26,7 @@ SECRET_KEY = 'hn*mc)a#*h)7^k%z0=gu8c^h-(vl34x+i-%*o3b2e4z)ln9ezv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['readose.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'theproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'readosedb',
-        'USER': 'harami',
+        'NAME': 'readosedb2',
+        'USER': 'postgres',
         'PASSWORD': 'A1Z2E3R4T5',
         'PORT': '5432',
-        'HOST': 'readosedb.ccxcu70kzvhd.us-east-2.rds.amazonaws.com'
+        'HOST': 'readosedb2.cjoeqo2vpykp.eu-west-3.rds.amazonaws.com'
     }
 }
 
@@ -136,7 +136,8 @@ STATICFILES_DIRS = (
 
 AWS_ACCESS_KEY_ID = 'AKIAWATZSV3XQJO4MNS3'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'readose'
+AWS_STORAGE_BUCKET_NAME = 'readose2'
+AWS_S3_REGION_NAME = 'eu-west-3'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

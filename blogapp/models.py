@@ -23,7 +23,7 @@ class Profile(models.Model):
     role = models.CharField(max_length=250, null=True,
                             blank=True, default="sub admin")
     profile_pic = models.ImageField(
-        upload_to="members/", null=True, default='profile_pic.png', blank=True)
+        upload_to="media/members/", null=True, default='profile_pic.png', blank=True)
     bio = models.TextField(null=True, blank=True)
     iam = models.CharField(max_length=50, default="")
     CHOICES = (
