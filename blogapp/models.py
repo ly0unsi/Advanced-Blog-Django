@@ -69,9 +69,9 @@ class Post(models.Model):
         return result.text
 
     likes = models.ManyToManyField(
-        User, related_name='blog_post', blank=True, null=True)
+        User, related_name='blog_post')
     views = models.ManyToManyField(
-        User, related_name='blog_post_views', blank=True, null=True)
+        User, related_name='blog_post_views')
 
     def __str__(self):
         return self.title+' | '+str(self.author)
