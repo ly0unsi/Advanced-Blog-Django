@@ -6,6 +6,28 @@
 {% load static %}
 <!-- *** START PAGE MAIN CONTENT *** -->
 <main class="page_main_wrapper">
+       <!-- START GAMES RESULT POST -->
+       <div class="welcome container">
+            <div class="panel_inner games-news">
+                <div class="panel_header">
+                    <h4 ><strong>Dear</strong> Visitors</h4>
+                    <a class="a" target="_blank" rel="noopener noreferrer"></a><i style="float: right;margin-top: 5px;" class="a fas fa-times"></i>
+                </div>
+                <div class="panel_body col-12">
+                    <div style="padding: 10px;" class="games-result-header row col-12">
+                        <div> <img class="col-3" style="width: 50px;height: 50px;border-radius: 50%;float: left;" src="{% static 'images/icon.jpg' %}" alt=""> </div>
+                        <div style="margin-left: 60px;padding: 10px 0 0;" class="col-7" > 
+                            <p>
+                                So wlecome to this shitty website, enjoy the content and <a href="{% url 'contact' %}">show us some love 🥰</a>.
+                            </p>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    <!-- END OF /. GAMES RESULT POST -->  
+   
     <!-- START NEWSTRICKER -->
     <div class="container">
     {% if messages %}
@@ -161,37 +183,39 @@
             font-size: 16px;
         }
     </style>
-    <div class="container" >
-    <div class="featured-inner" >
-        <div style="border-bottom: rgb(107, 107, 107) 0.2px solid;margin-bottom: 5px;">
-            <h4 ><strong>Top #10 </strong>Authors</h4>
+    <!-- start top 10 -->
+        <div class="container" >
+        <div class="featured-inner" >
+            <div style="border-bottom: rgb(107, 107, 107) 0.2px solid;margin-bottom: 5px;">
+                <h4 ><strong>Top #10 </strong>Authors</h4>
+            </div>
+            <div class="logo-slider" >
+                {% for user in users|slice:':10' %}
+                {% if user.profile %}
+                    <div class="item" style="text-align:center">
+                    <a href="{% url 'profile' user.profile.id %}"
+                        ><img
+                        style="
+                        padding: 2px;
+                            border-radius: 50%;
+                            border: 2px solid crimson;
+                            object-fit:cover;
+                            width: 54px;
+                            height: 54px;
+                        "
+                        src="{{user.profile.profile_pic.url}}"
+                        alt=""
+                    /></a>
+                    <span style="color: white;margin-right: 5px;">
+                        #{{forloop.counter}}
+                    </span>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        <div class="logo-slider" >
-            {% for user in users|slice:':10' %}
-            {% if user.profile %}
-                <div class="item" style="text-align:center">
-                <a href="{% url 'profile' user.profile.id %}"
-                    ><img
-                    style="
-                    padding: 2px;
-                        border-radius: 50%;
-                        border: 2px solid crimson;
-                        object-fit:cover;
-                        width: 54px;
-                        height: 54px;
-                    "
-                    src="{{user.profile.profile_pic.url}}"
-                    alt=""
-                /></a>
-                <span style="color: white;margin-right: 5px;">
-                    #{{forloop.counter}}
-                </span>
-                </div>
-                {% endif %}
-            {% endfor %}
         </div>
-    </div>
-    </div>      
+     <!-- end top 10 -->      
     <div class="container">
         <div class="row row-m">
             <!-- START MAIN CONTENT -->
@@ -362,165 +386,8 @@
             </div>
             <!-- END OF /. ADVERTISEMENT -->
             <!-- START POST CATEGORY STYLE TWO (Sports news) -->
-            <div class="post-inner post-inner-2">
-                <!--post header-->
-                <div class="post-head">
-                    <h2 class="title"><strong>Sports</strong> News</h2>
-
-                </div>
-                <!-- post body -->
-                <div class="post-body">
-                    <div class="post-slider owl-carousel owl-theme">
-                        <!-- item one -->
-                        <div class="item">
-                            <div class="row">
-                                 {% for post in posts|slice:":1" %}
-                                    <div class="col-sm-6 main-post-inner bord-right">
-                                        <article>
-                                            <figure>
-                                                <a href="#"><img src="{{ post.image.url }}" height="20"
-                                                        width="20" alt="" class="img-responsive"></a>
-                                                <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
-                                            </figure>
-                                            <div class="post-info">
-                                                <h3><a href="{% url 'post' post.id %}">{{ post.title }}..</a>
-                                                </h3>
-                                                 <ul class="authar-info">
-                                                <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
-                                                    <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
-                                                    </li>
-                                                    <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
-                                                    </li>
-                                                    <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
-                                                </ul>
-                                                <p style="font-weight:normal">{{ post.body|slice:":150"|safe }}...</p>
-                                            </div>
-                                        </article>
-                                    </div>
-                               {% endfor %}
-                                <div class="col-sm-6">
-                                    <div class="news-list">
-                                        {% for post in posts|slice:":4" %} 
-                                        <div class="news-list-item">
-                                            <div class="img-wrapper">
-                                                <a href="{% url 'post' post.id %}" class="thumb">
-                                                    <img src="{{ post.image.url }}" alt=""
-                                                        class="img-responsive">
-                                                    <div class="link-icon">
-                                                        <i class="fa fa-camera"></i>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="post-info-2">
-                                                <h5><a href="{% url 'post' post.id %}"
-                                                        class="title">{{ post.title|slice:":48" }}..</a></h5>
-                                                <ul class="authar-info">
-                                                <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
-                                                <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
-                                                </li>
-                                                <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
-                                                </li>
-                                                <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
-                                            </ul>
-                                            </div>
-                                        </div>
-                                        {% endfor %}
-                            </div>
-                            </div>
-                            </div>
-                        </div> 
-                    </div>
-                    <!-- item two -->
-                    <div class="item">
-
-                        <div class="row">
-                             {% for post in posts|slice:":1" %}
-                              <div class="col-sm-6 main-post-inner bord-right">
-                                <article>
-                                    <figure>
-                                        <a href="{% url 'post' post.id %}"><img src="{{ post.image.url }}" height="20" width="20"
-                                                alt="" class="img-responsive"></a>
-                                        <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
-                                    </figure>
-                                    <div class="post-info">
-                                        <h3><a href="{% url 'post' post.id %}">{{ post.title }}..</a>
-                                        </h3>
-                                        <ul class="authar-info">
-                                            <li><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
-                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
-                                            </li>
-                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li>{{post.date|timesince}} ago</li>
-                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
-                                        </ul>
-                                        <p>{{ post.body|slice:":150"|safe }}</p>
-                                    </div>
-                                </article>
-                            </div>
-                            {% endfor %}
-
-                            <div class="col-sm-6">
-                                <div class="news-list">
-                                     {% for post in posts|slice:":4" %}
-                                      <div class="news-list-item">
-                                        <div class="img-wrapper">
-                                            <a href="{% url 'post' post.id %}" class="thumb">
-                                                <img src="{{ post.image.url }}" alt="" class="img-responsive">
-                                                <div class="link-icon">
-                                                    <i class="fa fa-camera"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="post-info-2">
-                                            <h5><a href="{% url 'post' post.id %}"
-                                                    class="title">{{ post.title|slice:":48" }}..</a></h5>
-                                            <ul class="authar-info">
-                                            <li class="like"><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
-                                            <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
-                                            </li>
-                                            <li class="like"><a href="#">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
-                                        </ul>
-                                        </div>
-                                </div>
-                               {% endfor %}
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-
-        <!-- footer post -->
-        <div class="post-footer">
-            <div class="row thm-margin">
-                <div class="col-xs-12 col-sm-8 col-md-9 thm-padding">
-                    <a href="#" class="more-btn">More posts</a>
-                </div>
-                <div class="hidden-xs col-sm-4 col-md-3 thm-padding">
-                    <div class="social">
-                        <ul>
-                            <li>
-                                <div class="share transition">
-                                    <a href="#" target="_blank" class="ico fb"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#" target="_blank" class="ico tw"><i class="fab fa-twitter"></i></a>
-                                    <a href="#" target="_blank" class="ico rs"><i class="fas fa-rss"></i></a>
-                                    <a href="#" target="_blank" class="ico pin"><i class="fab fa-pinterest-p"></i></a>
-                                    <i class="ti-share ico-share"></i>
-                                </div>
-                            </li>
-                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                            <li><a href="#"><i class="ti-twitter"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-            </div>
-    </div>
-    <!--  END OF /. POST CATEGORY STYLE TWO (Travel news) -->
+         
+            <!--  END OF /. POST CATEGORY STYLE TWO (Travel news) -->
     </div>
     </div>
     <!-- END OF /. MAIN CONTENT -->
@@ -617,12 +484,12 @@
                 <!-- weather temperature -->
                 <div class="weather-temp-wrap active">
                     <div class="city-day">
-                        <div class="city">Dhaka</div>
-                        <div class="day">Tuesday, 8.00pm</div>
+                        <div class="city">Kenitra</div>
+                        <div class="day">Sunday, 8.00pm</div>
                     </div>
                     <div class="weather-icon">
                         <i class="flaticon-cloudy"></i>
-                        <div class="main-temp">34°F</div>
+                        <div class="main-temp">13°F</div>
                     </div>
                     <div class="break">
                         <div class="wind-condition"> Wind: 13mph WSW</div>
@@ -632,12 +499,12 @@
                 <!-- weather temperature -->
                 <div class="weather-temp-wrap">
                     <div class="city-day">
-                        <div class="city">Dhaka</div>
-                        <div class="day">Wednesday, 8.00pm</div>
+                        <div class="city">Kenitra</div>
+                        <div class="day">Monday, 8.00pm</div>
                     </div>
                     <div class="weather-icon">
                         <i class="flaticon-sun"></i>
-                        <div class="main-temp">38°F</div>
+                        <div class="main-temp">11°F</div>
                     </div>
                     <div class="break">
                         <div class="wind-condition"> Wind: 11mph WSW</div>
@@ -647,12 +514,12 @@
                 <!-- weather temperature -->
                 <div class="weather-temp-wrap">
                     <div class="city-day">
-                        <div class="city">Dhaka</div>
-                        <div class="day">Wednesday, 8.00pm</div>
+                        <div class="city">Kenitra</div>
+                        <div class="day">Tuesday, 8.00pm</div>
                     </div>
                     <div class="weather-icon">
                         <i class="flaticon-cloud"></i>
-                        <div class="main-temp">32°F</div>
+                        <div class="main-temp">14°F</div>
                     </div>
                     <div class="break">
                         <div class="wind-condition"> Wind: 11mph WSW</div>
@@ -662,12 +529,12 @@
                 <!-- weather temperature -->
                 <div class="weather-temp-wrap">
                     <div class="city-day">
-                        <div class="city">Dhaka</div>
-                        <div class="day">Friday, 8.00pm</div>
+                        <div class="city">Kenitra</div>
+                        <div class="day">Wednesday, 8.00pm</div>
                     </div>
                     <div class="weather-icon">
                         <i class="flaticon-rain"></i>
-                        <div class="main-temp">31°F</div>
+                        <div class="main-temp">15°F</div>
                     </div>
                     <div class="break">
                         <div class="wind-condition"> Wind: 16mph WSW</div>
@@ -951,7 +818,10 @@
                                     </div>
                                 </div>
                             </div> <!-- /.Post footer-->  
+                        </div>
                     <!-- END OF /. POST CATEGORY STYLE FOUR (Latest articles ) -->
+                    </div>
+                </div>
             <div class="col-sm-4 rightSidebar col-p">
                 <div class="theiaStickySidebar">
                     <!-- START SOCIAL ICON -->

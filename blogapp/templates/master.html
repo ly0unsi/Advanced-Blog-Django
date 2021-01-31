@@ -12,9 +12,7 @@
     {% block title %}
     {% endblock %}
   </title>
-
-
-   
+  <script data-ad-client="ca-pub-4075262890072474" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Favicon and touch icons -->
     <link
       rel="shortcut icon"
@@ -205,7 +203,7 @@
               <div class="header-right-menu">
                   <ul>
                     <li><a href="{% url 'contact' %}">Contact <i  class="fa fa-envelope"></i></a></li>
-                    <li><a href="#">Donation <i  class="fa fa-dollar-sign"></i></a></li>
+                    <li><a href="https://www.paypal.me/readose">Donation <i  class="fa fa-dollar-sign"></i></a></li>
               </div>
           </div> <!-- end of /. header top right menu -->
           </div>
@@ -401,39 +399,14 @@
             </ul>
           </div>
           <!-- END OF /. FOOTER BOX (Category) -->
-          <!-- START FOOTER BOX (Recent Post) -->
-          <div class="col-sm-4 footer-box">
-            <h3 class="wiget-title">Recent Post</h3>
-            <div class="footer-news-grid">
-              {% for post in posts|slice:":2" %}
-                <div class="news-list-item">
-                    <div class="img-wrapper">
-                    <a href="{% url 'post' post.pk %}" class="thumb">
-                        <img
-                        src="{{post.image.url}}"
-                        alt=""
-                        class="img-responsive"
-                        />
-                        <div class="link-icon">
-                        <i class="fa fa-camera"></i>
-                        </div>
-                    </a>
+           <!-- START FOOTER BOX (Recent Post) -->
+                <div class="col-sm-4 footer-box">
+                    <h3 class="wiget-title">About us</h3>
+                    <div class="footer-news-grid">
+                        <p style="text-align: justify">{{links.About|safe}}</p>
                     </div>
-                    <div class="post-info-2">
-                    <h5>
-                        <a href="{% url 'post' post.pk %}" class="title"
-                        >{{post.title}}</a
-                        >
-                    </h5>
-                    <ul class="authar-info">
-                        <li><i class="ti-timer"></i>{{post.date}}</li>
-                    </ul>
-                    </div>
-                </div>
-             {% endfor %}
             </div>
-          </div>
-          <!-- END OF /. FOOTER BOX (Recent Post) -->
+            <!-- END OF /. FOOTER BOX (Recent Post) -->
         </div>
       </div>
     </footer>
@@ -447,7 +420,7 @@
                     <div class="col-xs-12 col-sm-7 col-md-7">
                         <ul class="footer-nav">
                             <li><a href="{% url 'contact' %}">Contact</a></li>
-                            <li><a href="#">Donation</a></li>
+                            <li><a href="paypal.me/readose">Donation</a></li>
                         </ul>
                     </div>
                 </div>
@@ -493,6 +466,11 @@
       integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
       crossorigin="anonymous"
     ></script>
+     <script>
+        $('.a').on('click',function() {
+            $('.welcome').fadeOut(500);
+            });
+    </script>
     <script>
       $(".logo-slider").slick({
         slidesToShow: 5,

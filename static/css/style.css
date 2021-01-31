@@ -3831,7 +3831,6 @@ ul.category-list li a:hover span {
 
 footer {
   position: relative;
-  padding: 70px 0;
   background-color: #1b1c26;
 }
 
@@ -5089,7 +5088,7 @@ body.skin-dark {
 .skin-dark .cd-main-header,
 .skin-dark .ui-datepicker .ui-datepicker-header,
 .skin-dark .table > thead > tr > th {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgb(235 2 84);
 }
 
 .skin-dark.home_seven .post-head,
