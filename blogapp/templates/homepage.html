@@ -606,7 +606,7 @@
             <div class="col-sm-12">
                 <div class="featured-inner">
                     <div id="featured-owl" class="owl-carousel">
-                         {% for post in posts|slice:":4" %}
+                         {% for post in entertainement|slice:":4" %}
                           <div class="item">
                             <div class="featured-post">
                                 <a href="{% url 'post' post.id %}" class="news-image"><img height="180px"
@@ -676,7 +676,7 @@
                         <!-- START CARD POST -->
                         <div class="row row-m">
                             <div class="col-sm-6 col-p">
-                                {% for post in posts|slice:":1" %}
+                                {% for post in sports|slice:":1" %}
                                 <div class="posts card-post">
                                     <div class="post-grid post-grid-item">
                                         <figure class="posts-thumb">
@@ -722,7 +722,7 @@
                             <div class="col-sm-6 col-p">
                                 <div class="posts">
                                     <ul>
-                                        {% for post in posts|slice:"1:4" %} 
+                                        {% for post in sports|slice:"1:4" %} 
                                             <li class="post-grid">
                                                 <div class="posts-inner">
                                                     <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
@@ -753,11 +753,11 @@
                         <div class="post-inner">
                             <!--post header-->
                             <div class="post-head">
-                                <h2 class="title"><strong>Buisness</strong> articles</h2>
+                                <h2 class="title"><strong>RAP</strong> articles</h2>
                             </div>
                             <!-- post body -->
                             <div class="post-body">
-                                {% for post in posts|slice:":4" %} 
+                                {% for post in rap|slice:":4" %} 
                                     <div class="news-list-item articles-list">
                                         <div class="img-wrapper">
                                             <a href="{% url 'post' post.id %}" class="thumb"><img

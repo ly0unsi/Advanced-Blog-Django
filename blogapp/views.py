@@ -146,6 +146,9 @@ def Home(request):
     most_liked = Post.objects.all().annotate(
         likes_count=Count('likes')).order_by('-likes_count')
     latest_question_list = Question.objects.order_by('-pub_date')[:1]
+    entertainement = Post.objects.filter(category=4)
+    rap = Post.objects.filter(category=5)
+    sports = Post.objects.filter(category=1)
     context = {
         'categories': categories,
         'posts': posts,
@@ -157,7 +160,10 @@ def Home(request):
         'instagramicon': instagramicon,
         'twittericon': twittericon,
         'pinteresticon': pinteresticon,
-        'users': users
+        'users': users,
+        'entertainement': entertainement,
+        'rap': rap,
+        'sports': sports
     }
     return render(request, 'homepage.html', context)
 
