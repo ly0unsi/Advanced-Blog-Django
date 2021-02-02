@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from datetime import datetime, date
+from datetime import datetime
 from ckeditor.fields import RichTextField
 import readtime
 # Create your models here.
@@ -60,7 +60,6 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="media/images/")
     body = RichTextField()
-    date = models.DateField(auto_now_add=True)
     category = models.ForeignKey(
         Category, null=True, on_delete=models.CASCADE, default="")
 
