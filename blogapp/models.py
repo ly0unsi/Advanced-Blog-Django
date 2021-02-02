@@ -60,8 +60,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="media/images/")
     body = RichTextField()
-    date = models.DateTimeField(
-        auto_now=False, auto_now_add=False)(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(
         Category, null=True, on_delete=models.CASCADE, default="")
 
