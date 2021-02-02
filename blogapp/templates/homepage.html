@@ -757,7 +757,7 @@
                             </div>
                             <!-- post body -->
                             <div class="post-body">
-                                {% for post in rap|slice:":4" %} 
+                                {% for post in rap %} 
                                     <div class="news-list-item articles-list">
                                         <div class="img-wrapper">
                                             <a href="{% url 'post' post.id %}" class="thumb"><img
@@ -782,17 +782,24 @@
                             <div class="post-footer">
                                 <div class="row thm-margin">
                                     <div class="col-xs-12 col-sm-8 col-md-9 thm-padding">
-                                        <!-- pagination -->
+                                       <!-- pagination -->
+                                        {% if rap.has_other_pages %}
                                         <ul class="pagination">
-                                            <li class="disabled"><span class="ti-angle-left"></span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li class="disabled"><span class="extend">...</span></li>
-                                            <li>
-                                            <li><a href="#">12</a></li>
-                                            <li><a href="#"><i class="ti-angle-right"></i></a></li>
-                                        </ul> <!-- /.pagination -->
+                                            {% if rap.has_previous %}
+                                            <li> <a href="?page={{ rap.previous_page_number }}">  <span class="ti-angle-left"></span></a></li>
+                                            {% endif %}
+                                            {% for i in rap.paginator.page_range %}
+                                            {% if rap.number == i %}
+                                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                            {% else %}
+                                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% if rap.has_next %}
+                                            <li><a href="?page={{ rap.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+                                        {% endif %} <!-- /.pagination -->
                                     </div>
                                     <div class="hidden-xs col-sm-4 col-md-3 thm-padding">
                                         <div class="social">

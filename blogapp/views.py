@@ -162,6 +162,15 @@ def Home(request):
     entertainement = Post.objects.filter(category=4)
     rap = Post.objects.filter(category=5)
     sports = Post.objects.filter(category=1)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(rap, 4)
+    try:
+        rap = paginator.page(page)
+    except PageNotAnInteger:
+        rap = paginator.page(1)
+    except EmptyPage:
+        rap = paginator.page(paginator.num_pages)
+
     context = {
         'categories': categories,
         'posts': posts,
