@@ -38,6 +38,7 @@ urlpatterns = [
     path('vote/<int:question_id>', views.vote, name='vote'),
     path('postcomment/<int:cid>', views.postcomment, name='postcomment'),
     path('contact', views.contact, name='contact'),
+    path('reply', views.reply, name='reply'),
 
 ] + static(settings.MEDIA_URL,
            document_root=settings.MEDIA_ROOT)

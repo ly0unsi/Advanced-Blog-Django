@@ -238,7 +238,7 @@
                                             <div class="col-sm-6 main-post-inner bord-right">
                                                 <article>
                                                     <figure>
-                                                        <a href="#"><img src="{{ post.image.url }}" height="20"
+                                                        <a href="{% url 'post' post.id %}"><img src="{{ post.image.url }}" height="20"
                                                                 width="20" alt="" class="img-responsive"></a>
                                                         <span class="post-category"><a href="{% url 'category' post.category.id %}">{{ post.category }}</span>
                                                     </figure>
@@ -764,7 +764,7 @@
                                                     src="{{ post.image.url }}" alt="" class="img-responsive"></a>
                                         </div>
                                         <div class="post-info-2">
-                                            <h4><a href="{% url 'post' post.id %}" class="title">{{ post.title|slice:":48" }}..</a>
+                                            <h4><a style="text-align: center;" href="{% url 'post' post.id %}" class="title">{{ post.title }}..</a>
                                             </h4>
                                             <ul class="authar-info">
                                                 <li class="like"><a href="{% url 'profile' post.author.profile.id %}"><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></a></li>
@@ -774,7 +774,6 @@
                                                 </li>
                                                 <li class="like">{{ post.comments.count }} <i class="fa fa-comment"></i></li>
                                             </ul>
-                                            <p class="hidden-sm">{{ post.body|slice:":150"|safe }}...</p>
                                         </div>
                                     </div>
                                 {% endfor %}

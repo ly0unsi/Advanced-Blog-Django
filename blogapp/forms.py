@@ -34,6 +34,15 @@ class addCommentForm(forms.ModelForm):
         }
 
 
+class addReplyForm(forms.ModelForm):
+    class Meta:
+        model = Reply
+        fields = ('body',)
+        widgets = {
+            'body': forms.Textarea(attrs={'class': 'form-control', 'rows': '2'}),
+        }
+
+
 class messageForm(forms.ModelForm):
     class Meta:
         model = Message

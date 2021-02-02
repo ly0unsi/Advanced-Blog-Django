@@ -96,7 +96,7 @@
                                         {% for user in likers %}
                                         <li>
                                           <a class="dropdown-item" href="{% url 'profile' user.profile.id %}">
-                                            <img style="border-radius:50%" class="rounded-circle border-primary" width="25" height="25" src="{{ user.profile.profile_pic.url }}" alt="">
+                                            <img style="border-radius:50%;" class="rounded-circle border-primary" width="25" height="25" src="{{ user.profile.profile_pic.url }}" alt="">
                                             {{user.username}}
                                           </a>
                                         </li>
@@ -135,7 +135,7 @@
                                                             <div class="link-icon"><i class="fa fa-play"></i></div>
                                                         </a>
                                                     </div>
-                                                    <h5><a href="#" class="title">{{post.title}}</a></h5>
+                                                    <h5><a href="{% url 'post' post.id %}" class="title">{{post.title}}</a></h5>
                                                    <ul class="authar-info">
                                                     <li><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></li>
                                                     <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
@@ -164,7 +164,7 @@
                                                         <div class="link-icon"><i class="fa fa-play"></i></div>
                                                     </a>
                                                 </div>
-                                                <h5><a href="#" class="title">{{post.title}}</a></h5>
+                                                <h5><a href="{% url 'post' post.id %}" class="title">{{post.title}}</a></h5>
                                                 <ul class="authar-info">
                                                 <li><img class="rounded-circle" style="border-radius: 50%;width: 20px;" height="20" src="{{ post.author.profile.profile_pic.url }}" alt=""></li>
                                                 <li class="like"><a href="#"> {{ post.views.count }} <i class="fa fa-eye"></i></a>
@@ -238,27 +238,54 @@
                                            
                                     </div>
                                     <p>{{comment.body}}</p>
-                                    <a href="#" class="btn btn-news"> Reply</a>
+                                    <button onclick="toggleComment({{comment.id}} )" class="btn btn-news"> Reply</button>
+                                      <form style="display:none" id="comment-{{comment.id}}" 
+                                            action="{% url 'reply' %}" class="mt-1" method="post">
+                                            <input type="hidden" value="{{comment.id}}" name="comment">
+                                            <input type="hidden" value="{{post.id}}" name="postId">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="Votre commentaire">Your reply</label>
+                                                {{replyform}}
+                                            </div>
+                                            <button type="submit" id="respond-btn"
+                                                class="btn p-0 font-weight-light px-1 btn-primary btn-sm">
+                                                Reply
+                                            </button>
+                                        </form>
                                 </div>
                             </div>
                         </div>
-                         {% for reply in comment.replys.all %}
-                        <ul class="comments-list reply-list">
-                            <li>
-                                <!-- Avatar -->
-                                <div class="comment-avatar"><img src="{{comment.reply.owner.profile.profile_pic.url}}" alt=""></div>
-                                <div class="comment-box">
-                                    <div class="comment-content">
-                                        <div class="comment-header"> <cite class="comment-author">{{comment.reply.owner.profile.user.username}}</cite>
-                                            <b  class="comment-datetime">{{comment.reply.created_at}}</b>
+                         {% for reply in comment.replies.all %}
+                            <ul class="comments-list reply-list">
+                                <li>
+                                    <!-- Avatar -->
+                                    <div style="border-radius:50%;width: 40px;height: 40px;" class="comment-avatar"><img  src=" {{reply.owner.profile.profile_pic.url}} " alt=""></div>
+                                    <div class="comment-box">
+                                        <div class="comment-content">
+                                            <div class="comment-header"> <cite style="color:crimson" class="comment-author">{{reply.owner.username}}</cite>
+                                                <b  class="comment-datetime">{{reply.created_at}}</b>
+                                            </div>
+                                            <p>{{reply.body}}</p>
+                                            <button onclick="toggleReplyComment({{reply.id}} )" type="submit" class="btn btn-news"> Reply</button>
+                                            <form style="display:none" id="replyComment-{{reply.id}}" 
+                                            action="{% url 'reply' %}" class="mt-1" method="post">
+                                            <input type="hidden" value="{{comment.id}}" name="comment">
+                                            <input type="hidden" value="{{post.id}}" name="postId">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label for="Votre commentaire">Your reply</label>
+                                                    {{replyform}}
+                                                </div>
+                                                <button type="submit" id="respond-btn"
+                                                    class="btn p-0 font-weight-light px-1 btn-primary btn-sm">
+                                                    Reply
+                                                </button>
+                                            </form>
                                         </div>
-                                        <p>{{comment.reply.body}}</p>
-                                        <a href="#" class="btn btn-news"> Reply</a>
                                     </div>
-                                </div>
-                            </li>
-                           
-                        </ul>
+                                </li>
+                            </ul>
                         {% endfor %}
                     </li>
                     
@@ -391,5 +418,15 @@
     </div>
     
 </main>
+<script>
+      function toggleReplyComment(id){
+          let element=document.getElementById('replyComment-'+id);
+          element.style.display = element.style.display === 'none' ? '' : 'none';
+      }
+      function toggleComment(id){
+          let element=document.getElementById('comment-'+id);
+          element.style.display = element.style.display === 'none' ? '' : 'none';
+      }
+</script>
 <!-- *** END OF /. PAGE MAIN CONTENT *** -->
 {% endblock %}

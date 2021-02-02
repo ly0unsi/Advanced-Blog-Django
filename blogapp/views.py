@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
-from .forms import addPostForm, editPostForm, addCommentForm, messageForm
+from .forms import addPostForm, editPostForm, addCommentForm, messageForm, addReplyForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
@@ -60,22 +60,34 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         messages.warning(request, 'Thanks for sharing ur useless opinion')
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
         return redirect('home')
     return redirect('home')
-# Show specific question and choices
 
 
 def like(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('postId'))
-    post.views.add(request.user)
     if post.likes.filter(id=request.user.id):
         post.likes.remove(request.user)
     else:
         post.likes.add(request.user)
     return HttpResponseRedirect(reverse('post', args=[str(pk)]))
+
+
+def reply(request):
+    post = get_object_or_404(Post, id=request.POST.get('postId'))
+    if request.method == 'POST':
+        replyform = addReplyForm(request.POST)
+        if replyform.is_valid():
+            Reply.objects.create(
+                post=post,
+                comment=get_object_or_404(
+                    Comment, id=request.POST.get('comment')),
+                owner=request.user,
+                body=replyform.cleaned_data.get('body'),
+            )
+            messages.success(request, 'reply added')
+
+            return redirect(post)
 
 
 def postdetail(request, pid):
@@ -111,7 +123,7 @@ def postdetail(request, pid):
             )
             messages.success(request, 'comment added')
             return redirect(post)
-
+    replyform = addReplyForm()
     context = {
         'categories': categories,
         'post': post,
@@ -125,7 +137,8 @@ def postdetail(request, pid):
         'instagramicon': instagramicon,
         'twittericon': twittericon,
         'pinteresticon': pinteresticon,
-        'commentform': commentform
+        'commentform': commentform,
+        'replyform': replyform
     }
 
     return render(request, 'postdetail.html', context)
@@ -138,7 +151,7 @@ def Home(request):
     instagramicon = links.instagram.split('.')[1]
     twittericon = links.twitter.split('.')[1]
     pinteresticon = links.pinterest.split('.')[1]
-    posts = Post.objects.all() .order_by('-date')
+    posts = Post.objects.order_by('-date')
     most_viewed = Post.objects.all().annotate(
         views_count=Count('views')).order_by('-views_count')
     users = User.objects.annotate(
@@ -195,7 +208,7 @@ class addPost(CreateView):
 class updatePost(UpdateView):
     model = Post
     form_class = editPostForm
-    template_name = 'editPost.html'
+    template_name = 'editpost.html'
 
     def get_context_data(self, **kwargs):
         categories = Category.objects.all()

@@ -89,7 +89,7 @@ class Comment(models.Model):
     created_at = models.TimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.post.title + '|'+str(self.owner)
+        return self.body + '|'+str(self.owner)
 
     def get_absolute_url(self):
         return reverse("post", kwargs={"pk": post.pk})
@@ -106,7 +106,7 @@ class Reply(models.Model):
     created_at = models.TimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.comment.body+"|"+self.owner.username
+        return self.body+"|"+self.owner.username
 
     def get_absolute_url(self):
         return reverse("post", kwargs={"pk": post.pk})
